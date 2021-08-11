@@ -32,7 +32,7 @@
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Design Patterns</h1>
-                <p class="lead">Einführung in SIngleton, Oberserver und MVC Pattern</p>
+                <p class="lead">Einführung in Singleton, Oberserver und MVC Pattern</p>
             </div>
 
             
@@ -41,7 +41,7 @@
         <div style="width:800px; margin:0 auto; "class = "text-center">
             <img src="assets/table.png" />
         </div>
-        <!-- About section-->
+        <!-- Einführung section-->
         <section id="einführung">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
@@ -104,7 +104,7 @@ final class EagerSingleton{
                 </div>
             </div>
         </section>
-        <!-- Contact section-->
+        <!-- Observer section-->
         <section id="observer">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
@@ -113,12 +113,185 @@ final class EagerSingleton{
                         <div style="width:800px; margin:0 auto; "class = "text-center">
                             <img src="assets/umlObserver.jpg" />
                         </div>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                        <p class="lead">
+                            Das Observer Pattern wird hauptsächlich in der Gestaltung von grafischen Oberflächen verwendet. Es sorgt dafür, dass bestimmte Bereiche eines Programms, beispielsweise Elemente einer grafischen Oberfläche, die identische Datenquelle verwenden und sich aktualisieren, sobald sich die Daten ändern. 
+ 
+
+Dazu wird ein Programm, welches ein Observer Pattern implementiert, in zwei Teile aufgeteilt. Einmal die Subject-Klasse, welche die Daten enthält und zum anderen die Observer-Klassen und die Observer-Schnittstelle, welche die Daten einlesen und anzeigen, ausgeben oder weiterverarbeiten. Die Abbildung 4.1 zeigt die Struktur dieses Patterns. 
+ 
+
+Im folgenden Quellcode sieht man ein Beispiel für ein Programm, welches das Observer Pattern verwendet. Dort gibt es ein Interface Observer, welches von den beiden Observer-Klassen RealObserver1 und RealObserver2 implementiert werden muss. Das Interface enthält eine Funktion refresh() mit der alle Observer-Klassen benachrichtigt werden, wenn sich Daten in der Subject-Klasse geändert haben. Dies geschieht in dem sich alle Observer-Klassen bei der Subject-Klasse in eine ArrayList (oder eine beliebige andere Struktur) eintragen. Wenn sich nun Daten ändern ruft die Subject-Klasse die Methode notifyObserver() auf, in welcher alle Observer-Klassen durchlaufen werden und deren refresh() Methode aufgerufen wird. In dieser Methode können dann die Observer-Klassen auf die Datenänderungen reagieren. Das Eintragen und Austragen der Observer-Klassen bei der Subject-Klasse geschieht über die Methoden addObserver(Observer) und removeObserver(Observer). 
+
+Wie man sieht, bietet das Observer Pattern eine praktische Methode, mit welcher man dafür sorgen kann, dass bei Datenänderungen in einem Programm andere Programmteile sofort aktualisiert und an die neuen Daten angepasst werden können. 
+                        </p>
+                        <pre>
+                            <code class="language-java">
+import java.util.ArrayList;
+
+/*
+    * Hier wird das sogenannte Observerpattern vorgestellt.
+    * Dieses dient zur Verwaltung von verschiedenen Observern,
+    * welche auf die selben Daten zugreifen.
+    */
+
+/*
+    * Dieses Interface stellt den anderen Observern
+    * die refresh Methode zur Verfügung. Jeder Observer
+    * muss diese Methode implementieren. In der Implementierung
+    * der refresh Methode kann jeder Observer mit Daten des
+    * Subjects arbeiten. Immer wenn diese sich ändern sollte
+    * refresh aufgerufen werden.
+    */
+interface Observer{
+/*
+    * Muss von allen Observern 
+    * implementiert werden
+    */
+public void refresh();
+}
+
+
+/*
+    * Dies ist ein Observer.
+    * Dieser implementiert die Schnittstelle Observer und
+    * garantiert dadurch, dass die Refreshmethode implementiert ist.
+    * Er wartet auf refreshs von dem Subject um zu reagieren.
+    */
+class RealObserver1 implements Observer{
+//Bezeichnung des Observers
+private int id;
+
+//Referenz auf das Subject
+private Subject subject;
+
+//Konstruktor
+public RealObserver1(int id, Subject subject){
+    this.id = id;
+    this.subject = subject;
+}
+
+//So reagiert der Observer bei einem Notify
+public void refresh(){
+    System.out.println(
+        "RealObserver 1 with id " + id + 
+        " refreshed. Current value is " + 
+        subject.getValue());
+}
+}
+
+/*
+    * Dies ist eine zweite Observerklasse.
+    * Dieser implementiert die Schnittstelle Observer und
+    * garantiert dadurch, dass die Refreshmethode implementiert ist.
+    * Er wartet auf refreshs von dem Subject um zu reagieren.
+    */
+class RealObserver2 implements Observer{
+//Bezeichnung des Observers
+private int id;
+
+//Referenz auf das Subject
+private Subject subject;
+
+//Konstruktor
+public RealObserver2(int id, Subject subject){
+    this.id = id;
+    this.subject = subject;
+}
+
+//So reagiert der Observer bei einem Notify
+public void refresh(){
+    System.out.println(
+        "RealObserver 2 with id " + id + 
+        " refreshed. Current value is " + 
+        subject.getValue());
+}
+}
+
+/*
+    * In der Subjectklasse werden alle Observer in
+    * einem Array, einer ArrayList oder einer ähnlichen
+    * Datenstruktur gespeichert.
+    * Falls sich etwas an den Daten ändert (hier: curValue)
+    * werden alle Observer benachrichtigt.
+    */
+class Subject{
+//Liste mit allen Observern
+private ArrayList observer;
+
+//Die zu verwaltenden Daten
+private int curValue;
+
+//Konstruktor
+public Subject(){
+    observer = new ArrayList();
+    curValue = 0;
+}
+
+//Fügt einen Observer ein und benachrichtigt diesen
+public void addObserver(Observer o){
+    observer.add(o);
+    o.refresh();
+}
+
+//Entfernt einen Observer
+public void removeObserver(Observer o){
+    observer.remove(o);
+}
+
+//Benachrichtigt alle Observer
+public void notifyObserver(){
+    for(Observer o : observer){
+        o.refresh();
+    }
+}
+
+//Inkrementiert die Daten
+public void incValue(){
+    curValue++;
+    notifyObserver();
+}
+
+//Gibt die Daten zurück
+public int getValue(){
+    return curValue;
+}
+}
+
+/*
+    * Es werden ein Subject und vier Observer erstellt.
+    * Nachdem die Observer bei dem Subject angemeldet wurden,
+    * wird der curValue einige male inkrementiert.
+    */
+public class ObserverPattern {
+public static void main(String[] args){
+    //Erstellen des Subjects
+    Subject subject = new Subject();
+    
+    //Erstellen der Observer
+    RealObserver1 ro1a = new RealObserver1(1,subject);
+    RealObserver1 ro1b = new RealObserver1(2,subject);
+    RealObserver2 ro2a = new RealObserver2(3,subject);
+    RealObserver2 ro2b = new RealObserver2(4,subject);
+    
+    //Anmelden der Observer
+    subject.addObserver(ro1a);
+    subject.addObserver(ro1b);
+    subject.addObserver(ro2a);
+    subject.addObserver(ro2b);
+    
+    //Mehrfaches inkrementieren der Daten
+    subject.incValue();
+    subject.incValue();
+    subject.incValue();
+}
+}
+                            </code>
+                        </pre>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Contact section-->
+        <!-- MVC section-->
         <section id="mvc">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
@@ -127,12 +300,180 @@ final class EagerSingleton{
                         <div style="width:800px; margin:0 auto; "class = "text-center">
                             <img src="assets/umlMVC.jpg" />
                         </div>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                        <p class="lead">
+                            Das Kürzel MVC steht für Model-View-Control. 
+
+                            Beim MVC wird ein Programm in drei unterschiedliche Teile aufgeteilt. 
+                            Der Model-Teil beinhaltet dabei die Daten bzw. den Datenzugriff.  
+                            Hier könnten sich klassische Objekte eines objektorientierten Programms befinden oder auch ein Datenbankzugriff oder jede andere Art von Datenverwaltung. 
+                            Des Weiteren gibt es noch den View-Abschnitt. Hier befinden sich alle Ansichten.  
+                            Diese zeigen normalerweise die Daten des Models an und sind komplett unabhängig von den Daten implementiert. 
+                            Der dritte Teil des Patterns ist der Control-Teil. Dieser beinhaltet alle Kontrollmöglichkeiten, mit welchen ein Benutzer das Programm steuern kann. Auch dieser Teil ist normalerweise komplett unabhängig von den anderen Teilen. 
+                            
+
+                            Die einzelnen Teilbereiche besitzen in einer Umsetzung des MVC-Patterns meistens nur Referenzen auf die anderen Teilbereiche. Dabei werden nur die definierten Zugriffsmethoden verwendet. Es ist also beispielsweise nicht möglich von einer View-Klasse direkt auf Objekte der Model-Klasse zuzugreifen. 
+                            
+
+                            Im folgenden Beispiel wird ein Programm vorgestellt, welches nicht nur ein MVC-Entwurfsmuster implementiert, sondern gleichzeitig auch noch ein Observer-Pattern verwendet. Diese Vermischung der beiden Entwurfsmuster kommt sehr häufig vor, da sie gut zusammenpassen.  
+                            Dabei sind die beiden so verknüpft, dass es sich bei den View-Klassen um die Observerklassen des Observer-Patterns handelt und die Model-Klasse die Subject-Klasse des Patterns repräsentiert. 
+                        </p>
+                        <pre>
+                            <code class="language-java">
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+interface View{
+    //Muss von allen Views implementiert werden
+    public void refresh();
+}
+
+class RealView extends JFrame implements View{
+    //Id des Fensters
+    private int id;
+    
+    //Referenz auf das Model
+    private Model model;
+    
+    //JTextField des Fensters
+    private JTextField txt;
+    
+    //Konstruktor
+    public RealView(int id, Model model){
+        this.id = id;
+        this.model = model;
+        
+        setTitle("View " + id);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        txt = new JTextField("");
+        getContentPane().add(txt);
+        
+        refresh();
+        
+        setLocation(250, 60 * id);
+        pack();
+        setVisible(true);
+    }
+    
+    /*
+        * Wird ausgeführt, wenn sich etwas an den
+        * Daten im Model ändert
+        */
+    public void refresh(){
+        txt.setText(
+            "View " + id + ": " + 
+            model.getValue());
+    }
+}
+
+class ButtonView extends JFrame{	
+    public ButtonView(Model model){		
+        //Stellt die Eigenschaften des Fensters ein
+        setTitle("ButtonView");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //Fügt die Controlklasse zu dem Button hinzu
+        JButton btn = new JButton("Increment");
+        btn.addActionListener(new Control(model));
+        getContentPane().add(btn);
+        
+        //Zeigt das Fenster an
+        setLocation(100,100);
+        pack();
+        setVisible(true);		
+    }
+}
+
+class Control implements ActionListener{
+    //Referenz auf das Model
+    private Model model;
+    
+    //Konstruktor
+    public Control(Model model){
+        this.model = model;
+    }
+    
+    //Wird ausgeführt, wenn man den Button anklickt
+    public void actionPerformed(ActionEvent evt){
+        model.incValue();
+    }
+}
+
+class Model{
+    //Alle angemeldeten Views
+    private ArrayList views;
+    
+    //Daten
+    private int curValue;
+    
+    //Konstruktor
+    public Model(){
+        views = new ArrayList();
+        curValue = 0;
+    }
+    
+    //Fügt eine neue View hinzu
+    public void addView(View view){
+        views.add(view);
+        view.refresh();
+    }
+    
+    //Entfernt eine View
+    public void removeView(View view){
+        views.remove(view);
+    }
+    
+    //Benachrichtigt alle Views
+    public void notifyViews(){
+        for(View v : views){
+            v.refresh();
+        }
+    }
+    
+    //Inkrementiert die Daten
+    public void incValue(){
+        curValue++;
+        notifyViews();
+    }
+    
+    //Gibt die Daten zurück
+    public int getValue(){
+        return curValue;
+    }
+}
+
+public class MVCPattern {
+    public static void main(String[] args){
+        /*
+            * Erstellt das Model, in welchem die Daten,
+            * sowie die Views verwaltet werden.
+            */
+        Model model = new Model();
+        
+        //Die Views, welche die Daten anzeigen
+        RealView view1 = new RealView(1, model);
+        RealView view2 = new RealView(2, model);
+        
+        //Die Views tragen sich bei dem Model ein
+        model.addView(view1);
+        model.addView(view2);
+        
+        //Die View zur Bedienung des Programms
+        new ButtonView(model);
+    }
+}
+                            </code>
+                        </pre>
                     </div>
                 </div>
             </div>
         </section>
-         <!-- Contact section-->
+         <!-- Übung section-->
          <section id="übung">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
