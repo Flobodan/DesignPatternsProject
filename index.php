@@ -383,7 +383,7 @@ public static void main(String[] args){
 
         <!-- MVC section-->
 
-        <?php include('partials/mvc.html') ?>
+        <?php include('partials/mvc.html') ?>git checkout main
 
         <!-- Spacer -->
         <div style="
@@ -398,37 +398,6 @@ public static void main(String[] args){
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>Übungsaufgaben</h2>
-
-                        <div class="zuordnungs-quiz" lang="de">
-                            <h2 id="zuordnungs-quiz-pattern">Ordne die Eigenschaften zu.</h2>
-                            <p>Ordnen Sie folgende Begriffe/Dinge einander zu, indem Sie die grünen Felder mit der Maus verschieben!</p>
-                            <table>
-                                <tr>
-                                    <td>Singleton</td>
-                                    <td>genau eine Instanz</td>
-                                    <td>private Konstruktor hat hier keine Funktion</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>MVC</td>
-                                    <td>drei Teile</td>
-                                    <td>Control-Teil</td>
-                                    <td>View</td>
-                                    <td>Zugriffsmethoden</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>Observer</td>
-                                    <td>Zwei Teile</td>
-                                    <td>Subject-Klasse</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </table>
-                        </div>
-                        
                         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
                     </div>
                 </div>
