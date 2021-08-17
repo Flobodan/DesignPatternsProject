@@ -145,11 +145,30 @@ final class EagerSingleton{
                             <p class="lead text-center">
                                 <strong>Vorteile:</strong>
                             </p>
+                            <p>
+                                <strong>Zugriffskontrolle:</strong> Das Singleton kapselt seine eigenen Erstellung und kann damit genau kontrollieren, wann und wie Zugriff auf das Singleton erlaubt wird.
+                                <br>
+                                <br>
+                                <strong>Sauberer Namensraum:</strong> Der Namensraum wird nicht mit unzähligen globalen Variablen überfrachtet, sondern gekapselt in einem Singleton bereitgestellt.
+                                <br>
+                                <br>
+                                <strong>Spezialisierung:</strong> Ein Singleton kann abgeleitet werden, um ihm neue Funktionalität zuweisen zu können. Die Integration in bestehenden Code gestaltet sich einfach. Welche Unterklasse genutzt werden soll, kann dynamisch zur Laufzeit entschieden werden.
+                            </p>
                             <br>
                         </div>
                         <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;">
                             <p class="lead text-center">
                                 <strong>Nachteile:</strong>
+                            </p>
+                            <p>
+                                <strong>Prozedurales Programmieren:</strong> Die ausgiebige Verwendung von Singletons führt zu einem ähnlich ungünstigen Zustand wie bei globalen Variablen. Dies entspricht der prozeduralen Programmierung und hat nichts mit Objektorientierung und Kapselung zu tun.
+                                <br>
+                                <br>
+                                <strong>Intransparenz:</strong> Ob eine Klasse ein Singleton verwendet, wird nicht aus deren Schnittstelle klar, sondern aus deren Implementierung. Diese wird hart ans Singleton gekoppelt. Auf die Definition der Schnittstelle allein kann sich nicht mehr verlassen werden, da die Implementierung unspezifizierte Abhängigkeiten besitzt.
+                                <br>
+                                <strong>Übersichtlichkeit, Wartbarkeit und Wiederverwendbarkeit leiden ernorm.</strong>
+                                <br>
+                                Bei Änderungen am Singleton wird nicht klar, welche Programmteile betroffen sind. Fehlfunktionen können schwer zurückverfolgt werden.
                             </p>
                             <br>
                         </div>
@@ -359,12 +378,33 @@ public static void main(String[] args){
                             <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;">
                                 <p class="lead text-center">
                                     <strong>Vorteile:</strong>
+                                    <p>
+                                        <strong>Zustandskonsistenz:</strong>
+                                        Die Daten im Gesamtsystem bleiben konsistent, da die Observer ihren Zustand automatisch bei Änderung des Subjects anpassen. Weiterhin bleibt der Informationsaustausch bzw. die Kopplung zwischen den Objekten auf die Zeit zwischen An- und Abmelden des Observers am Subject begrenzt.
+                                        <br>
+                                        <br>
+                                        <strong>Flexibilität und Modularität:</strong>
+                                        Das System erlaubt es, dass mehrere verschiedene Observer ein einziges Subject beobachten, aber auch dass ein Observer mehrere Subjects beobachtet. Weiterhin können Klassen sowohl Observer als auch Subject in einem seien.
+                                        <br>
+                                        <br>
+                                        <strong>Wiederverwendbarkeit:</strong>
+                                        Durch das Observer Pattern lassen sich Subject und Observer unabhängig voneinander variieren. Somit kann das Subject wiederverwendet werden, ohne seine abhängigen Observer verwenden zu müssen und umgekehrt. Ebenso sind bestehende Subjects wiederverwendbar, wenn neue Observer hinzugefügt werden.
+
+                                    </p>
                                 </p>
                                 <br>
                             </div>
                             <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;">
                                 <p class="lead text-center">
                                     <strong>Nachteile:</strong>
+                                    <p>
+                                        <strong>Aktualisierungskaskaden und -zyklen:</strong>
+                                        Bei umfangreichen Systemen mit vielen Subjects und Observer kann es schnell zu ganzen Aktualisierungskaskaden kommen, da die Observer nichts von einander wissen und nicht abschätzen können, welche Folgen eine einzige Modifikation an einem Subject hat.
+                                        <br>
+                                        <br>
+                                        <strong>Abmeldung von Observer:</strong>
+                                        Schnell vergisst man ein Observer beim Subject abzumelden, wenn man es nicht mehr braucht. Dies kann in Fällen von Mehrfachanmeldung (Mehrfachbenachrichtigung) merkwürdige Effekte zur Folge haben und verhindert die automatische Speicherfreisetzung (Garbage Collection in Java und C#), da das Subject immer noch eine Referenz auf ein nicht mehr gebrauchtes Objekt hält.
+                                    </p>
                                 </p>
                                 <br>
                             </div>
@@ -568,12 +608,21 @@ public class MVCPattern {
                             <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;">
                                 <p class="lead text-center">
                                     <strong>Vorteile:</strong>
+                                    <p>
+                                        Der Vorteil der Aufgabenverteilung einer Model View Controller Architektur ist zum einen die Aufteilung in logische, unabhängige Klassen. Damit ermöglicht eine Model View Controller Architektur agile Entwicklung, denn es besteht jederzeit die Option, jede der drei Komponenten auszutauschen.
+                                        <br>
+                                        <br>
+                                        Vorteile findet man zum einen in der Möglichkeit, dass ein und dasselbe Datenmodell in mehreren Ansichten repräsentiert werden kann. Des weiteren sind alle Ansichten die sich auf ein Modell Beziehen automatisch synchronisiert und es können Bedienelemente beliebig vertauscht werden. Außerdem ist es ohne weiteres möglich auf eine vorhandenes Model eine neue View zu implementieren. Dadurch ist ein solches System nahezu beliebig skalierbar.
+                                    </p>
                                 </p>
                                 <br>
                             </div>
                             <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;">
                                 <p class="lead text-center">
                                     <strong>Nachteile:</strong>
+                                    <p>
+                                        Ein Nachteil besteht darin, dass der zugriff mehrerer Views auf ein Model schnell zu einer hohen Komplexität führen kann und sich dadurch fehlerhafte Stellen im Programm schwerer ausfindig machen lassen. Des weitern kann man teilweise von einem ineffizienten Datenzugriff innerhalb einer Ansicht sprechen, da immer noch ein Objekt dazwischen geschaltet ist. Außerdem ist dass MVC-Konzept schwierig in WYSIWYG-Werkzeuge zu integrieren. Auch die starke Koppelung zwischen Modell und Sicht sowie zwischen Modell und Controller kann als Nachteil interpretiert werden.
+                                    </p>
                                 </p>
                                 <br>
                             </div>
