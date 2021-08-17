@@ -196,17 +196,21 @@ final class EagerSingleton{
                             <img src="assets/umlObserver.jpg" />
                         </div>
                         <p class="lead">
-                            Das Observer Pattern wird hauptsächlich in der Gestaltung von grafischen Oberflächen verwendet. Es sorgt dafür, dass bestimmte Bereiche eines Programms, beispielsweise Elemente einer grafischen Oberfläche, die identische Datenquelle verwenden und sich aktualisieren, sobald sich die Daten ändern. 
- 
+                            <p>
+                                Das Haupteinsatzgebiet von einem Observer Pattern ist die Gestaltung von Grafischen Oberflächen.
+                                Das Observer Pattern sorgt zum Beispiel dafür, dass die Elemente einer Grafische Oberfläche, die eine identische Datenquelle verwenden, sich aktualisieren, sobald sich die Quelldaten ändern.  
+                                Programme, die das Observer Pattern verwenden, werden in zwei Teile aufgeteilt.
+                                </p>
+                                <p>
+                                Einmal die Subject-Klasse, welche die Daten enthält und zum anderen die Observer-Klassen und die Observer-Schnittstelle, welche die Daten einlesen und anzeigen, ausgeben oder weiterverarbeiten. 
+                                Die obere Abbildung zeigt die Struktur dieses Patterns. 
+                                </p>
+                                <p>
+                                Im folgenden Quellcode sieht man ein Beispiel für ein Programm, welches das Observer Pattern verwendet:
+                                </p>
 
-Dazu wird ein Programm, welches ein Observer Pattern implementiert, in zwei Teile aufgeteilt. Einmal die Subject-Klasse, welche die Daten enthält und zum anderen die Observer-Klassen und die Observer-Schnittstelle, welche die Daten einlesen und anzeigen, ausgeben oder weiterverarbeiten. Die Abbildung 4.1 zeigt die Struktur dieses Patterns. 
- 
 
-Im folgenden Quellcode sieht man ein Beispiel für ein Programm, welches das Observer Pattern verwendet. Dort gibt es ein Interface Observer, welches von den beiden Observer-Klassen RealObserver1 und RealObserver2 implementiert werden muss. Das Interface enthält eine Funktion refresh() mit der alle Observer-Klassen benachrichtigt werden, wenn sich Daten in der Subject-Klasse geändert haben. Dies geschieht in dem sich alle Observer-Klassen bei der Subject-Klasse in eine ArrayList (oder eine beliebige andere Struktur) eintragen. Wenn sich nun Daten ändern ruft die Subject-Klasse die Methode notifyObserver() auf, in welcher alle Observer-Klassen durchlaufen werden und deren refresh() Methode aufgerufen wird. In dieser Methode können dann die Observer-Klassen auf die Datenänderungen reagieren. Das Eintragen und Austragen der Observer-Klassen bei der Subject-Klasse geschieht über die Methoden addObserver(Observer) und removeObserver(Observer). 
-
-Wie man sieht, bietet das Observer Pattern eine praktische Methode, mit welcher man dafür sorgen kann, dass bei Datenänderungen in einem Programm andere Programmteile sofort aktualisiert und an die neuen Daten angepasst werden können. 
-                        </p>
-                        <pre>
+                                <pre>
                             <code class="language-java">
 import java.util.ArrayList;
 
@@ -369,7 +373,20 @@ public static void main(String[] args){
 }
                             </code>
                         </pre>
-
+                        <p>
+                            Dort gibt es ein Interface Observer, welches von den beiden Observer-Klassen RealObserver1 und RealObserver2 implementiert werden muss. </p>
+                            <p>
+                            Das Interface enthält eine Funktion refresh() mit der alle Observer-Klassen benachrichtigt werden, wenn sich Daten in der Subject-Klasse geändert haben. 
+                            Dies geschieht in dem sich alle Observer-Klassen bei der Subject-Klasse in eine ArrayList (oder eine beliebige andere Struktur) eintragen. </p>
+                            <p>
+                            Wenn sich nun Daten ändern ruft die Subject-Klasse die Methode notifyObserver() auf, in welcher alle Observer-Klassen durchlaufen werden und deren refresh() Methode aufgerufen wird. 
+                            In dieser Methode können dann die Observer-Klassen auf die Datenänderungen reagieren. </p>
+                            <p>
+                            Das Eintragen und Austragen der Observer-Klassen bei der Subject-Klasse geschieht über die Methoden addObserver(Observer) und removeObserver(Observer). 
+                        </p>
+                            <p>
+                            Wie man sieht, bietet das Observer Pattern eine praktische Methode, mit welcher man dafür sorgen kann, dass bei Datenänderungen in einem Programm andere Programmteile sofort aktualisiert und an die neuen Daten angepasst werden können.</p>
+                            </p>
                         <!-- Pros and cons section-->
                         <br>
                         <hr>
@@ -684,6 +701,7 @@ public class MVCPattern {
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Dennis, Florian, Michele</p></div>
+            <div>Quellen: <a href="https://public.hochschule-trier.de" style="color: rgba(0, 0, 0, .0)">KLICK</a></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
