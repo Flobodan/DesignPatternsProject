@@ -448,21 +448,13 @@ public static void main(String[] args){
                             <img src="assets/umlMVC.jpg" />
                         </div>
                         <p class="lead">
-                            Das Kürzel MVC steht für Model-View-Control. 
+                            <p><b>MVC</b> steht für <b>M</b>odel-<b>V</b>iew-<b>C</b>ontrol.</p>
 
-                            Beim MVC wird ein Programm in drei unterschiedliche Teile aufgeteilt. 
-                            Der Model-Teil beinhaltet dabei die Daten bzw. den Datenzugriff.  
-                            Hier könnten sich klassische Objekte eines objektorientierten Programms befinden oder auch ein Datenbankzugriff oder jede andere Art von Datenverwaltung. 
-                            Des Weiteren gibt es noch den View-Abschnitt. Hier befinden sich alle Ansichten.  
-                            Diese zeigen normalerweise die Daten des Models an und sind komplett unabhängig von den Daten implementiert. 
-                            Der dritte Teil des Patterns ist der Control-Teil. Dieser beinhaltet alle Kontrollmöglichkeiten, mit welchen ein Benutzer das Programm steuern kann. Auch dieser Teil ist normalerweise komplett unabhängig von den anderen Teilen. 
-                            
+                            <p>Mit dem MVC Pattern, wird ein Programm in drei unterschiedliche Teile aufgeteilt. Dabei beinhaltet der Model-Teil die Daten bzw. Den Zugriff auf diese. Dies ist auch der Teil, on dem sich der klassische, objektorientierte Teil des Programms vorhanden sein wird. Das bedeutet auch den Datenbankzugriff oder jede andere Art von Datenverwaltung. Des Weiteren gibt es noch den View-Abschnitt. Hier befinden sich alle Ansichten. Diese zeigen normalerweise die Daten des Models an, sind jedoch komplett unabhängig von den Daten implementiert. Als letzten und dritten Teil des Patterns folgt der Control-Teil. Dieser beinhaltet alle Kontrollmöglichkeiten, mit welchen ein Benutzer das Programm steuern kann. Wichtig: auch dieser Teil ist normalerweise komplett unabhängig von den anderen Teilen.</p>
 
-                            Die einzelnen Teilbereiche besitzen in einer Umsetzung des MVC-Patterns meistens nur Referenzen auf die anderen Teilbereiche. Dabei werden nur die definierten Zugriffsmethoden verwendet. Es ist also beispielsweise nicht möglich von einer View-Klasse direkt auf Objekte der Model-Klasse zuzugreifen. 
-                            
+                            <p>Die drei verschiedenen Teile des MVC wissen ausschließlich durch Referenzen voneinander und nur durch die definierten Zugriffsmethoden wird eine Kommunikation gewährleistet. Es soll also beispielsweise nicht möglich sein von einer View-Klasse direkt auf Objekte der Model-Klasse zuzugreifen.</p>
 
-                            Im folgenden Beispiel wird ein Programm vorgestellt, welches nicht nur ein MVC-Entwurfsmuster implementiert, sondern gleichzeitig auch noch ein Observer-Pattern verwendet. Diese Vermischung der beiden Entwurfsmuster kommt sehr häufig vor, da sie gut zusammenpassen.  
-                            Dabei sind die beiden so verknüpft, dass es sich bei den View-Klassen um die Observerklassen des Observer-Patterns handelt und die Model-Klasse die Subject-Klasse des Patterns repräsentiert. 
+                            <p>Im folgenden Beispiel wird ein Programm vorgestellt, welches nicht nur ein MVC-Entwurfsmuster implementiert, sondern gleichzeitig auch noch ein Observer-Pattern verwendet. Diese Vermischung der beiden Entwurfsmuster kommt sehr häufig vor, da sie gut zusammenpassen. Dabei sind die beiden so verknüpft, dass es sich bei den View-Klassen um die Observerklassen des Observer-Patterns handelt und die Model-Klasse die Subject-Klasse des Patterns repräsentiert.</p>
                         </p>
                         <pre>
                             <code class="language-java">
@@ -622,7 +614,7 @@ public class MVCPattern {
                         <hr>
                         <br>
                         <div>
-                            <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;">
+                            <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;padding-left: 10px;">
                                 <p class="lead text-center">
                                     <strong>Vorteile:</strong>
                                     <p>
@@ -634,11 +626,11 @@ public class MVCPattern {
                                 </p>
                                 <br>
                             </div>
-                            <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;">
+                            <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;padding-left: 10px;">
                                 <p class="lead text-center">
                                     <strong>Nachteile:</strong>
                                     <p>
-                                        Ein Nachteil besteht darin, dass der zugriff mehrerer Views auf ein Model schnell zu einer hohen Komplexität führen kann und sich dadurch fehlerhafte Stellen im Programm schwerer ausfindig machen lassen. Des weitern kann man teilweise von einem ineffizienten Datenzugriff innerhalb einer Ansicht sprechen, da immer noch ein Objekt dazwischen geschaltet ist. Außerdem ist dass MVC-Konzept schwierig in WYSIWYG-Werkzeuge zu integrieren. Auch die starke Koppelung zwischen Modell und Sicht sowie zwischen Modell und Controller kann als Nachteil interpretiert werden.
+                                        Ein Nachteil besteht darin, dass der Zugriff mehrerer Views auf ein Model schnell zu einer hohen Komplexität führen kann und sich dadurch fehlerhafte Stellen im Programm schwerer ausfindig machen lassen. Des weitern kann man teilweise von einem ineffizienten Datenzugriff innerhalb einer Ansicht sprechen, da immer noch ein Objekt dazwischen geschaltet ist. Außerdem ist dass MVC-Konzept schwierig in WYSIWYG-Werkzeuge zu integrieren. Auch die starke Koppelung zwischen Modell und Sicht sowie zwischen Modell und Controller kann als Nachteil interpretiert werden.
                                     </p>
                                 </p>
                                 <br>
