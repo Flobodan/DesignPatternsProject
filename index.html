@@ -355,12 +355,17 @@ public static void main(String[] args){
                             </code>
                         </pre>
                         <p>
-                            Dort gibt es ein Interface Observer, welches von den beiden Observer-Klassen RealObserver1 und RealObserver2 implementiert werden muss. 
+                            Dort gibt es ein Interface Observer, welches von den beiden Observer-Klassen RealObserver1 und RealObserver2 implementiert werden muss. </p>
+                            <p>
                             Das Interface enthält eine Funktion refresh() mit der alle Observer-Klassen benachrichtigt werden, wenn sich Daten in der Subject-Klasse geändert haben. 
-                            Dies geschieht in dem sich alle Observer-Klassen bei der Subject-Klasse in eine ArrayList (oder eine beliebige andere Struktur) eintragen. 
+                            Dies geschieht in dem sich alle Observer-Klassen bei der Subject-Klasse in eine ArrayList (oder eine beliebige andere Struktur) eintragen. </p>
+                            <p>
                             Wenn sich nun Daten ändern ruft die Subject-Klasse die Methode notifyObserver() auf, in welcher alle Observer-Klassen durchlaufen werden und deren refresh() Methode aufgerufen wird. 
-                            In dieser Methode können dann die Observer-Klassen auf die Datenänderungen reagieren. 
+                            In dieser Methode können dann die Observer-Klassen auf die Datenänderungen reagieren. </p>
+                            <p>
                             Das Eintragen und Austragen der Observer-Klassen bei der Subject-Klasse geschieht über die Methoden addObserver(Observer) und removeObserver(Observer). 
+                        </p>
+                            <p>
                             Wie man sieht, bietet das Observer Pattern eine praktische Methode, mit welcher man dafür sorgen kann, dass bei Datenänderungen in einem Programm andere Programmteile sofort aktualisiert und an die neuen Daten angepasst werden können.</p>
                             </p>
                         <!-- Pros and cons section-->
