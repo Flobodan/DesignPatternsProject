@@ -652,11 +652,13 @@ public class MVCPattern {
                 <p class="lead">
                     <p><b>MVVM</b> steht für <b>M</b>odel-<b>V</b>iew-<b>V</b>iew<b>M</b>odel</p>
 
-                    <p>Mit dem MVC Pattern, wird ein Programm in drei unterschiedliche Teile aufgeteilt. Dabei beinhaltet der Model-Teil die Daten bzw. Den Zugriff auf diese. Dies ist auch der Teil, on dem sich der klassische, objektorientierte Teil des Programms vorhanden sein wird. Das bedeutet auch den Datenbankzugriff oder jede andere Art von Datenverwaltung. Des Weiteren gibt es noch den View-Abschnitt. Hier befinden sich alle Ansichten. Diese zeigen normalerweise die Daten des Models an, sind jedoch komplett unabhängig von den Daten implementiert. Als letzten und dritten Teil des Patterns folgt der Control-Teil. Dieser beinhaltet alle Kontrollmöglichkeiten, mit welchen ein Benutzer das Programm steuern kann. Wichtig: auch dieser Teil ist normalerweise komplett unabhängig von den anderen Teilen.</p>
+Grundidee ist die Aufteilung des Codes in einen allgemeinen, oberflächenunabhängigen Teil (das Model) und auf der anderen Seite den oberflächenspezifischen Code. Dieser kann wiederum in Code zur reinen Anzeige (die View) und Code zur Verarbeitung von Benutzereingaben und Steuerung der Oberfläche (der Controller) geteilt werden.
+​
+  <br>  
+Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abzubilden. Dieses ViewModel enthält also beispielsweise Felder für die aktuellen Werte von Textfeldern, Tabellen und anderen Komponenten. Außerdem werden Informationen wie "Button X ist inaktiv" ebenfalls als Boolean-Feld im ViewModel hinterlegt.
+<br> Die View präsentiert lediglich den UI-Zustand des ViewModels. Wird der UI-Zustand vom Nutzer verändert, z. B. indem in einem Textfeld getippt wird, reicht die View diese Änderungen umgehend an das ViewModel weiter. Andersherum müssen aber auch Änderungen, die vom ViewModel ausgehen, umgehend von der View angezeigt werden. 
+<br>View und ViewModel müssen also stets synchron gehalten werden. Wie diese Synchronisierung konkret umgesetzt wird, kommt dabei auf die Programmiersprache bzw. das Framework an.
 
-                    <p>Die drei verschiedenen Teile des MVC wissen ausschließlich durch Referenzen voneinander und nur durch die definierten Zugriffsmethoden wird eine Kommunikation gewährleistet. Es soll also beispielsweise nicht möglich sein von einer View-Klasse direkt auf Objekte der Model-Klasse zuzugreifen.</p>
-
-                    <p>Im folgenden Beispiel wird ein Programm vorgestellt, welches nicht nur ein MVC-Entwurfsmuster implementiert, sondern gleichzeitig auch noch ein Observer-Pattern verwendet. Diese Vermischung der beiden Entwurfsmuster kommt sehr häufig vor, da sie gut zusammenpassen. Dabei sind die beiden so verknüpft, dass es sich bei den View-Klassen um die Observerklassen des Observer-Patterns handelt und die Model-Klasse die Subject-Klasse des Patterns repräsentiert.</p>
                 </p>
                 <pre>
                     <code class="language-java">
@@ -671,29 +673,34 @@ public class MVCPattern {
                 <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">MVC</th>
+                        <th scope="col">MVVM</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>Controller-Klasse dient als Einstiegspunkt für die Anwendung.</td>
+                        <td>Die View-Klasse dient als EInstiegspunkt für die Anwendung.</td>
                       </tr>
                       <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
+                        <td>“One to Many”-Beziehungen zwischen Controler und View. </td>
+                        <td>“One to Many”-Beziehungen zwischen View und View-Model. </td>
                       </tr>
                       <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
+                        <td>View referenziert nicht den Controller.</td>
+                        <td>View referenziert die View-Model.</td>
+                      </tr>
+                      <tr>
+                        <td>MVC ist ein altes Konzept.</td>
+                        <td>MVVM ist ein relartiv neues Konzept.</td>
+                      </tr>
+                      <tr>
+                        <td>Niedrige Lesbarkeit, Wartbarkeit und schweirig für Unit-Tests. </td>
+                        <td>Schwierig zu debuggen, wenn viele Data-Bindings verwendet werden.</td>
+                      </tr>
+                      <tr>
+                        <td>MVC Model Komponenten können seperat vom Benutzer getestet werden. </td>
+                        <td>Der Code ist Event-driven und leicht für Unit-Tests zugänglich. </td>
                       </tr>
                     </tbody>
                   </table>
@@ -702,10 +709,7 @@ public class MVCPattern {
                         <p class="lead text-center">
                             <strong>Vorteile:</strong>
                             <p>
-                                Der Vorteil der Aufgabenverteilung einer Model View Controller Architektur ist zum einen die Aufteilung in logische, unabhängige Klassen. Damit ermöglicht eine Model View Controller Architektur agile Entwicklung, denn es besteht jederzeit die Option, jede der drei Komponenten auszutauschen.
-                                <br>
-                                <br>
-                                Vorteile findet man zum einen in der Möglichkeit, dass ein und dasselbe Datenmodell in mehreren Ansichten repräsentiert werden kann. Des weiteren sind alle Ansichten die sich auf ein Modell Beziehen automatisch synchronisiert und es können Bedienelemente beliebig vertauscht werden. Außerdem ist es ohne weiteres möglich auf eine vorhandenes Model eine neue View zu implementieren. Dadurch ist ein solches System nahezu beliebig skalierbar.
+                                Durch diese Trennung können die Anwendungsschichten von verschiedenen Arbeitsgruppen entwickelt werden. Designer können einen Fokus auf das Benutzererlebnis und die UI legen (VIEW) und Entwickler unabhängig davon die UI- und Geschäftslogik schreibe (MODEL und VIEWMODEL). In der Regel sind keine aufwendigen UI-Tests nötig. Stattdessen genügen codebasierte Modul-Tests des ViewModel. Auch ist eine leichtere Austauschbarkeit der View z.B. nach WPF oder Windows Phone möglich. Unterstützung in WPF, Silverlight, Windows Phone und Windows Store Apps.
                             </p>
                         </p>
                         <br>
@@ -714,7 +718,7 @@ public class MVCPattern {
                         <p class="lead text-center">
                             <strong>Nachteile:</strong>
                             <p>
-                                Ein Nachteil besteht darin, dass der Zugriff mehrerer Views auf ein Model schnell zu einer hohen Komplexität führen kann und sich dadurch fehlerhafte Stellen im Programm schwerer ausfindig machen lassen. Des weitern kann man teilweise von einem ineffizienten Datenzugriff innerhalb einer Ansicht sprechen, da immer noch ein Objekt dazwischen geschaltet ist. Außerdem ist dass MVC-Konzept schwierig in WYSIWYG-Werkzeuge zu integrieren. Auch die starke Koppelung zwischen Modell und Sicht sowie zwischen Modell und Controller kann als Nachteil interpretiert werden.
+                                MVVM stellt einen Mehraufwand dar und ist für Anwendungen mit einfacher UI ein Overkill. Für größere Anwendungen kann das Design eines ausreichend allgemeinen ViewModel’s im Voraus schwierig sein. Außerdem führe eine schlecht verwaltete Datenbindung zu einem erheblichen Speicherbedarf der Anwendung.
                             </p>
                         </p>
                         <br>
