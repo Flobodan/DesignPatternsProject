@@ -20,12 +20,12 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#einführung">Einführung</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#introduction">Introduction</a></li>
                         <li class="nav-item"><a class="nav-link" href="#singleton">Singleton</a></li>
                         <li class="nav-item"><a class="nav-link" href="#observer">Observer</a></li>
                         <li class="nav-item"><a class="nav-link" href="#mvc">MVC</a></li>
                         <li class="nav-item"><a class="nav-link" href="#mvvm">MVVM</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#übung">Übungsaufgaben</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#exercises">Exercises</a></li>
                     </ul>
                 </div>
                 <a class="btn btn-outline-info" href="index.html">
@@ -37,7 +37,7 @@
         <header class="text-white" style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);">
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Design Patterns</h1>
-                <p class="lead">Einführung in Singleton, Oberserver und MVC Pattern</p>
+                <p class="lead">Introduction in Singleton, Oberserver and MVC pattern</p>
             </div>    
         </header>
 
@@ -45,32 +45,31 @@
 
 
         <!-- Einführung section-->
-        <section id="einführung">
+        <section id="introduction">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
-                        <h3>Was sind Design Patterns?</h3>
+                        <h3>What are design patterns?</h3>
                         <p class="lead">
-                            Design Patterns bieten <strong>Musterlösungen für wiederkehrende Probleme!</strong>
+                            Design patterns offer <strong>sample solutions for recurring problems!</strong>
                             <br>
-                            Sie bezeichnen Entwurfsmuster, also Strukturen, Modelle, Schablonen und Muster die sich bei der Entwicklung stabiler Software als Modell nutzen lassen.
+                            They designate design patterns, i.e. structures, models, templates and patterns that can be used as models in the development of stable software.
                         </p>
                     </div>
                     <div class="col-lg-8" style="padding-top: 5%;">
-                        <h3>Was ist ein Pattern?</h3>
+                        <h3>What is a pattern?</h3>
                         <p class="lead">
-                            Ein Pattern ist ein formale Dokumentation in Form zur modellhaften Lösung eines bestimmten Problems.
+                            A pattern is a formal documentation in form for the model-like solution of a certain problem.
                             <br>
-                            Dazu werden Entwurfsmuster nicht etwa erfunden, sondern leiten sich aus der wiederholten Anwendung aus erfolgreicher Praxis ab.
-                            </p>
+                            For this purpose, design patterns are not invented, but are derived from repeated application from successful practice.
+                        </p>
                     </div>
                     <div class="col-lg-8" style="padding-top: 5%;">
-                        <h3>Architekturpattern als Grundlage für modernes Softwaredesign</h3>
+                        <h3>Architecture patterns as a basis for modern software design!</h3>
                         <p class="lead">
-                            Ursprünglich stammen Pattern aus dem Ingenieurbereich der Architektur.
+                            Originally, patterns originated in the engineering field of architecture.
                             <br>
-                            Auch wenn diese Modelle sich auf die Bauarchitektur und die Städteplanung beziehen,
-                            lassen sich grundlegende Prinzipien und Erkenntnisse auf Disziplinen wie Softwarearchitekturen und Softwareentwicklung übertragen.
+                            Even if these models relate to building architecture and urban planning, fundamental principles and insights can be transferred to disciplines such as software architectures and software development.
                         </p>
                     </div>
                 </div>
@@ -95,7 +94,7 @@
                             <img src="assets/umlSingleton.png"/>
                         </div>
                         <p class="lead">
-                            Das Entwurfsmuster Singleton wird eingesetzt, wenn von einem Objekt nur genau eine Instanz existieren darf. Man kann zwei Arten der Erzeugung von Singletons unterscheiden. Die erste Möglichkeit ist ein so genannter Lazy Singleton (Faules Einzelstück). Das bedeutet, dass die Instanz erst dann erzeugt wird, wenn sie auch wirklich benötigt wird.
+                            The Singleton design pattern is used when only one instance of an object may exist. Two types of singleton creation can be distinguished. The first possibility is a so-called lazy singleton. This means that the instance is only created when it is really needed.
                         </p>
                         <pre>
                             <code class="language-java">
@@ -114,7 +113,7 @@ public final class Singleton {
                         </pre>
                         <br>
                         <p class="lead">
-                            Bei der Initialisierung wird lediglich der Speicherbereich für die Instanz reserviert. Der private Konstruktor hat hier keine Funktion. Aber dadurch, dass er als private deklariert ist, wird verhindert das von außen weitere Instanzen erzeugt werden können. Erst bei dem ersten Aufruf von "`getInstanz"' wird die Instanz erzeugt und zurückgegeben. Bei jedem weiteren Aufruf wird die bereits erzeugte Instanz zurückgegeben. Bei der Verwendung eines Lazy Singleton muss darauf geachtet werden, dass es bei Nebenläufigkeiten durch mehrere Threads nicht zu Problemen kommen kann. Daher ist es nötig die "`getInstanz"' Methode als "`synchronized"' zu deklarieren. Um dieses Problem zu umgehen kann man einen Eager Singleton (Gieriges Einzelstück) verwenden.
+                            During initialization, only the memory area for the instance is reserved. The private constructor has no function here. But by the fact that it is declared as private, it is prevented that from the outside further instances can be created. Only with the first call of "`getInstanz"' the instance is created and returned. With each further call the already created instance is returned. When using a lazy singleton, care must be taken to avoid problems with concurrency caused by multiple threads. Therefore it is necessary to declare the "`getInstance"' method as "`synchronized"'. To get around this problem one can use an Eager Singleton.
                         </p>
                         <pre>
                             <code class="language-java">
@@ -138,32 +137,34 @@ final class EagerSingleton{
                     <div>
                         <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;">
                             <p class="lead text-center">
-                                <strong>Vorteile:</strong>
+                                <strong>Advantages:</strong>
                             </p>
                             <p>
-                                <strong>Zugriffskontrolle:</strong> Das Singleton kapselt seine eigenen Erstellung und kann damit genau kontrollieren, wann und wie Zugriff auf das Singleton erlaubt wird.
+                                <strong>Access control:</strong> The singleton encapsulates its own creation and can thus control exactly when and how access to the singleton is allowed.
                                 <br>
                                 <br>
-                                <strong>Sauberer Namensraum:</strong> Der Namensraum wird nicht mit unzähligen globalen Variablen überfrachtet, sondern gekapselt in einem Singleton bereitgestellt.
+                                <strong>Clean namespace:</strong> The namespace is not overloaded with countless global variables, but provided encapsulated in a singleton.<br>
                                 <br>
-                                <br>
-                                <strong>Spezialisierung:</strong> Ein Singleton kann abgeleitet werden, um ihm neue Funktionalität zuweisen zu können. Die Integration in bestehenden Code gestaltet sich einfach. Welche Unterklasse genutzt werden soll, kann dynamisch zur Laufzeit entschieden werden.
+                                <strong>Specialization:</strong> A singleton can be derived to assign new functionality to it. Integration into existing code is simple. Which subclass is to be used can be decided dynamically at runtime.
                             </p>
                             <br>
                         </div>
                         <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;">
                             <p class="lead text-center">
-                                <strong>Nachteile:</strong>
+                                <strong>Disadvantages:</strong>
                             </p>
                             <p>
-                                <strong>Prozedurales Programmieren:</strong> Die ausgiebige Verwendung von Singletons führt zu einem ähnlich ungünstigen Zustand wie bei globalen Variablen. Dies entspricht der prozeduralen Programmierung und hat nichts mit Objektorientierung und Kapselung zu tun.
+                                <strong>Procedural programming:</strong> The extensive use of singletons leads to a similar unfavorable condition as with global variables. This corresponds to procedural programming and has nothing to do with object orientation and encapsulation
+                                A singleton can be derived to assign new functionality to it. Integration into existing code is simple. Which subclass is to be used can be decided dynamically at runtime.
                                 <br>
                                 <br>
-                                <strong>Intransparenz:</strong> Ob eine Klasse ein Singleton verwendet, wird nicht aus deren Schnittstelle klar, sondern aus deren Implementierung. Diese wird hart ans Singleton gekoppelt. Auf die Definition der Schnittstelle allein kann sich nicht mehr verlassen werden, da die Implementierung unspezifizierte Abhängigkeiten besitzt.
+                                <strong>Intransparency:</strong> 
+                                Whether a class uses a singleton is not clear from its interface, but from its implementation. This is hard-coupled to the Singleton. The definition of the interface alone can no longer be relied upon, since the implementation has unspecified dependencies.
                                 <br>
-                                <strong>Übersichtlichkeit, Wartbarkeit und Wiederverwendbarkeit leiden ernorm.</strong>
                                 <br>
-                                Bei Änderungen am Singleton wird nicht klar, welche Programmteile betroffen sind. Fehlfunktionen können schwer zurückverfolgt werden.
+                                <strong>Clarity, maintainability and reusability suffer enormously!</strong>
+                                <br>
+                                When changes are made to the singleton, it is not clear which parts of the program are affected. Malfunctions can be traced back with difficulty.
                             </p>
                             <br>
                         </div>
@@ -742,11 +743,11 @@ Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abz
         "></div>
 
          <!-- Übung section-->
-         <section id="übung">
+         <section id="exercises">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
-                        <h2>Übungsaufgaben</h2>
+                        <h2>Introduction</h2>
 
                         <!-- Quiz section -->
                         <div class="zuordnungs-quiz" lang="de">
