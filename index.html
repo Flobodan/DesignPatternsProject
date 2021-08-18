@@ -217,118 +217,118 @@ import java.util.ArrayList;
     * refresh aufgerufen werden.
     */
 interface Observer{
-/*
-    * Muss von allen Observern 
-    * implementiert werden
-    */
-public void refresh();
-}
+    /*
+        * Muss von allen Observern 
+        * implementiert werden
+        */
+    public void refresh();
+    }
 
 
-/*
-    * Dies ist ein Observer.
-    * Dieser implementiert die Schnittstelle Observer und
-    * garantiert dadurch, dass die Refreshmethode implementiert ist.
-    * Er wartet auf refreshs von dem Subject um zu reagieren.
-    */
-class RealObserver1 implements Observer{
-//Bezeichnung des Observers
-private int id;
+    /*
+        * Dies ist ein Observer.
+        * Dieser implementiert die Schnittstelle Observer und
+        * garantiert dadurch, dass die Refreshmethode implementiert ist.
+        * Er wartet auf refreshs von dem Subject um zu reagieren.
+        */
+    class RealObserver1 implements Observer{
+    //Bezeichnung des Observers
+    private int id;
 
-//Referenz auf das Subject
-private Subject subject;
+    //Referenz auf das Subject
+    private Subject subject;
 
-//Konstruktor
-public RealObserver1(int id, Subject subject){
-    this.id = id;
-    this.subject = subject;
-}
+    //Konstruktor
+    public RealObserver1(int id, Subject subject){
+        this.id = id;
+        this.subject = subject;
+    }
 
-//So reagiert der Observer bei einem Notify
-public void refresh(){
-    System.out.println(
-        "RealObserver 1 with id " + id + 
-        " refreshed. Current value is " + 
-        subject.getValue());
-}
-}
+    //So reagiert der Observer bei einem Notify
+    public void refresh(){
+        System.out.println(
+            "RealObserver 1 with id " + id + 
+            " refreshed. Current value is " + 
+            subject.getValue());
+    }
+    }
 
-/*
-    * Dies ist eine zweite Observerklasse.
-    * Dieser implementiert die Schnittstelle Observer und
-    * garantiert dadurch, dass die Refreshmethode implementiert ist.
-    * Er wartet auf refreshs von dem Subject um zu reagieren.
-    */
-class RealObserver2 implements Observer{
-//Bezeichnung des Observers
-private int id;
+    /*
+        * Dies ist eine zweite Observerklasse.
+        * Dieser implementiert die Schnittstelle Observer und
+        * garantiert dadurch, dass die Refreshmethode implementiert ist.
+        * Er wartet auf refreshs von dem Subject um zu reagieren.
+        */
+    class RealObserver2 implements Observer{
+    //Bezeichnung des Observers
+    private int id;
 
-//Referenz auf das Subject
-private Subject subject;
+    //Referenz auf das Subject
+    private Subject subject;
 
-//Konstruktor
-public RealObserver2(int id, Subject subject){
-    this.id = id;
-    this.subject = subject;
-}
+    //Konstruktor
+    public RealObserver2(int id, Subject subject){
+        this.id = id;
+        this.subject = subject;
+    }
 
-//So reagiert der Observer bei einem Notify
-public void refresh(){
-    System.out.println(
-        "RealObserver 2 with id " + id + 
-        " refreshed. Current value is " + 
-        subject.getValue());
-}
-}
+    //So reagiert der Observer bei einem Notify
+    public void refresh(){
+        System.out.println(
+            "RealObserver 2 with id " + id + 
+            " refreshed. Current value is " + 
+            subject.getValue());
+    }
+    }
 
-/*
-    * In der Subjectklasse werden alle Observer in
-    * einem Array, einer ArrayList oder einer ähnlichen
-    * Datenstruktur gespeichert.
-    * Falls sich etwas an den Daten ändert (hier: curValue)
-    * werden alle Observer benachrichtigt.
-    */
-class Subject{
-//Liste mit allen Observern
-private ArrayList observer;
+    /*
+        * In der Subjectklasse werden alle Observer in
+        * einem Array, einer ArrayList oder einer ähnlichen
+        * Datenstruktur gespeichert.
+        * Falls sich etwas an den Daten ändert (hier: curValue)
+        * werden alle Observer benachrichtigt.
+        */
+    class Subject{
+    //Liste mit allen Observern
+    private ArrayList observer;
 
-//Die zu verwaltenden Daten
-private int curValue;
+    //Die zu verwaltenden Daten
+    private int curValue;
 
-//Konstruktor
-public Subject(){
-    observer = new ArrayList();
-    curValue = 0;
-}
+    //Konstruktor
+    public Subject(){
+        observer = new ArrayList();
+        curValue = 0;
+    }
 
-//Fügt einen Observer ein und benachrichtigt diesen
-public void addObserver(Observer o){
-    observer.add(o);
-    o.refresh();
-}
-
-//Entfernt einen Observer
-public void removeObserver(Observer o){
-    observer.remove(o);
-}
-
-//Benachrichtigt alle Observer
-public void notifyObserver(){
-    for(Observer o : observer){
+    //Fügt einen Observer ein und benachrichtigt diesen
+    public void addObserver(Observer o){
+        observer.add(o);
         o.refresh();
     }
-}
 
-//Inkrementiert die Daten
-public void incValue(){
-    curValue++;
-    notifyObserver();
-}
+    //Entfernt einen Observer
+    public void removeObserver(Observer o){
+        observer.remove(o);
+    }
 
-//Gibt die Daten zurück
-public int getValue(){
-    return curValue;
-}
+    //Benachrichtigt alle Observer
+    public void notifyObserver(){
+        for(Observer o : observer){
+            o.refresh();
+        }
+    }
+
+    //Inkrementiert die Daten
+    public void incValue(){
+        curValue++;
+        notifyObserver();
+    }
+
+    //Gibt die Daten zurück
+    public int getValue(){
+        return curValue;
+    }
 }
 
 /*
@@ -337,27 +337,27 @@ public int getValue(){
     * wird der curValue einige male inkrementiert.
     */
 public class ObserverPattern {
-public static void main(String[] args){
-    //Erstellen des Subjects
-    Subject subject = new Subject();
-    
-    //Erstellen der Observer
-    RealObserver1 ro1a = new RealObserver1(1,subject);
-    RealObserver1 ro1b = new RealObserver1(2,subject);
-    RealObserver2 ro2a = new RealObserver2(3,subject);
-    RealObserver2 ro2b = new RealObserver2(4,subject);
-    
-    //Anmelden der Observer
-    subject.addObserver(ro1a);
-    subject.addObserver(ro1b);
-    subject.addObserver(ro2a);
-    subject.addObserver(ro2b);
-    
-    //Mehrfaches inkrementieren der Daten
-    subject.incValue();
-    subject.incValue();
-    subject.incValue();
-}
+    public static void main(String[] args){
+        //Erstellen des Subjects
+        Subject subject = new Subject();
+        
+        //Erstellen der Observer
+        RealObserver1 ro1a = new RealObserver1(1,subject);
+        RealObserver1 ro1b = new RealObserver1(2,subject);
+        RealObserver2 ro2a = new RealObserver2(3,subject);
+        RealObserver2 ro2b = new RealObserver2(4,subject);
+        
+        //Anmelden der Observer
+        subject.addObserver(ro1a);
+        subject.addObserver(ro1b);
+        subject.addObserver(ro2a);
+        subject.addObserver(ro2b);
+        
+        //Mehrfaches inkrementieren der Daten
+        subject.incValue();
+        subject.incValue();
+        subject.incValue();
+    }
 }
                             </code>
                         </pre>
@@ -606,10 +606,12 @@ public class MVCPattern {
                                 <p class="lead text-center">
                                     <strong>Vorteile:</strong>
                                     <p>
-                                        Der Vorteil der Aufgabenverteilung einer Model View Controller Architektur ist zum einen die Aufteilung in logische, unabhängige Klassen. Damit ermöglicht eine Model View Controller Architektur agile Entwicklung, denn es besteht jederzeit die Option, jede der drei Komponenten auszutauschen.
+                                        <strong>Aufteilung in logische, unabhängige Klassen.</strong>
+                                        Damit ermöglicht eine Model View Controller Architektur agile Entwicklung, denn es besteht jederzeit die Option, jede der drei Komponenten auszutauschen.
                                         <br>
                                         <br>
-                                        Vorteile findet man zum einen in der Möglichkeit, dass ein und dasselbe Datenmodell in mehreren Ansichten repräsentiert werden kann. Des weiteren sind alle Ansichten die sich auf ein Modell Beziehen automatisch synchronisiert und es können Bedienelemente beliebig vertauscht werden. Außerdem ist es ohne weiteres möglich auf eine vorhandenes Model eine neue View zu implementieren. Dadurch ist ein solches System nahezu beliebig skalierbar.
+                                        <strong>Die Möglichkeit</strong>,
+                                        dass ein und dasselbe Datenmodell in mehreren Ansichten repräsentiert werden kann. Des weiteren sind alle Ansichten die sich auf ein Modell Beziehen automatisch synchronisiert und es können Bedienelemente beliebig vertauscht werden. Außerdem ist es ohne weiteres möglich auf eine vorhandenes Model eine neue View zu implementieren. Dadurch ist ein solches System nahezu beliebig skalierbar.
                                     </p>
                                 </p>
                                 <br>
@@ -618,7 +620,8 @@ public class MVCPattern {
                                 <p class="lead text-center">
                                     <strong>Nachteile:</strong>
                                     <p>
-                                        Ein Nachteil besteht darin, dass der Zugriff mehrerer Views auf ein Model schnell zu einer hohen Komplexität führen kann und sich dadurch fehlerhafte Stellen im Programm schwerer ausfindig machen lassen. Des weitern kann man teilweise von einem ineffizienten Datenzugriff innerhalb einer Ansicht sprechen, da immer noch ein Objekt dazwischen geschaltet ist. Außerdem ist dass MVC-Konzept schwierig in WYSIWYG-Werkzeuge zu integrieren. Auch die starke Koppelung zwischen Modell und Sicht sowie zwischen Modell und Controller kann als Nachteil interpretiert werden.
+                                        <strong>Der Zugriff</strong>
+                                        mehrerer Views auf ein Model schnell zu einer hohen Komplexität führen kann und sich dadurch fehlerhafte Stellen im Programm schwerer ausfindig machen lassen. Des weitern kann man teilweise von einem ineffizienten Datenzugriff innerhalb einer Ansicht sprechen, da immer noch ein Objekt dazwischen geschaltet ist. Außerdem ist dass MVC-Konzept schwierig in WYSIWYG-Werkzeuge zu integrieren. Auch die starke Koppelung zwischen Modell und Sicht sowie zwischen Modell und Controller kann als Nachteil interpretiert werden.
                                     </p>
                                 </p>
                                 <br>
