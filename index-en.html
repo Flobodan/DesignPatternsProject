@@ -137,7 +137,7 @@ final class EagerSingleton{
                     <div>
                         <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;">
                             <p class="lead text-center">
-                                <strong>Advantages:</strong>
+                                <strong>Pros:</strong>
                             </p>
                             <p>
                                 <strong>Access control:</strong> The singleton encapsulates its own creation and can thus control exactly when and how access to the singleton is allowed.
@@ -151,7 +151,7 @@ final class EagerSingleton{
                         </div>
                         <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;">
                             <p class="lead text-center">
-                                <strong>Disadvantages:</strong>
+                                <strong>Cons:</strong>
                             </p>
                             <p>
                                 <strong>Procedural programming:</strong> The extensive use of singletons leads to a similar unfavorable condition as with global variables. This corresponds to procedural programming and has nothing to do with object orientation and encapsulation
@@ -444,13 +444,25 @@ public static void main(String[] args){
                             <img src="assets/umlMVC.jpg" />
                         </div>
                         <p class="lead">
-                            <p><b>MVC</b> steht für <b>M</b>odel-<b>V</b>iew-<b>C</b>ontrol.</p>
+                            <p><b>MVC</b> stands for <b>M</b>odel-<b>V</b>iew-<b>C</b>ontrol.</p>
 
-                            <p>Mit dem MVC Pattern, wird ein Programm in drei unterschiedliche Teile aufgeteilt. Dabei beinhaltet der Model-Teil die Daten bzw. Den Zugriff auf diese. Dies ist auch der Teil, on dem sich der klassische, objektorientierte Teil des Programms vorhanden sein wird. Das bedeutet auch den Datenbankzugriff oder jede andere Art von Datenverwaltung. Des Weiteren gibt es noch den View-Abschnitt. Hier befinden sich alle Ansichten. Diese zeigen normalerweise die Daten des Models an, sind jedoch komplett unabhängig von den Daten implementiert. Als letzten und dritten Teil des Patterns folgt der Control-Teil. Dieser beinhaltet alle Kontrollmöglichkeiten, mit welchen ein Benutzer das Programm steuern kann. Wichtig: auch dieser Teil ist normalerweise komplett unabhängig von den anderen Teilen.</p>
-
-                            <p>Die drei verschiedenen Teile des MVC wissen ausschließlich durch Referenzen voneinander und nur durch die definierten Zugriffsmethoden wird eine Kommunikation gewährleistet. Es soll also beispielsweise nicht möglich sein von einer View-Klasse direkt auf Objekte der Model-Klasse zuzugreifen.</p>
-
-                            <p>Im folgenden Beispiel wird ein Programm vorgestellt, welches nicht nur ein MVC-Entwurfsmuster implementiert, sondern gleichzeitig auch noch ein Observer-Pattern verwendet. Diese Vermischung der beiden Entwurfsmuster kommt sehr häufig vor, da sie gut zusammenpassen. Dabei sind die beiden so verknüpft, dass es sich bei den View-Klassen um die Observerklassen des Observer-Patterns handelt und die Model-Klasse die Subject-Klasse des Patterns repräsentiert.</p>
+                            <p>The MVC Pattern splits the program in three parts. 
+                            </p>
+                            <p>
+                                The first part is the Model part, which includes the data respectively the access to the data. This is also the part, where the classical Object-Oriented Part of programming lies. This also includes Database access and any other form of data management.
+                            </p>
+                            <p>
+                                Next comes the View part. This shows the Data to the user but is implemented completely independent from the Model part.
+                            </p>
+                            <p>
+                                The third and last part is the Control part, which allows the user to control the program. The Control Part is also implemented independently of the other parts.
+                            </p>
+                            <p>
+                                The three parts of the MVC Pattern can only communicate with each other through specifically designed access methods. The View-Class should not be able to access Objects in the Model-Class.
+                            </p>
+                            <p>
+                                The following example shows not only the MVC Pattern but also combines it with the Observer Pattern. There two patterns are often used together because they complement each other very well. In this case the Observer-Class is used as the View-Class.
+                            </p>
                         </p>
                         <pre>
                             <code class="language-java">
@@ -463,18 +475,18 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 interface View{
-    //Muss von allen Views implementiert werden
+    //Must be implemented by every class
     public void refresh();
 }
 
 class RealView extends JFrame implements View{
-    //Id des Fensters
+    //window ID
     private int id;
     
-    //Referenz auf das Model
+    //Model reference
     private Model model;
     
-    //JTextField des Fensters
+    //JTextField of the window
     private JTextField txt;
     
     //Konstruktor
@@ -496,8 +508,7 @@ class RealView extends JFrame implements View{
     }
     
     /*
-        * Wird ausgeführt, wenn sich etwas an den
-        * Daten im Model ändert
+        * Gets executed if the Data gets changed
         */
     public void refresh(){
         txt.setText(
@@ -508,16 +519,16 @@ class RealView extends JFrame implements View{
 
 class ButtonView extends JFrame{	
     public ButtonView(Model model){		
-        //Stellt die Eigenschaften des Fensters ein
+        //sets the properties of the window
         setTitle("ButtonView");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        //Fügt die Controlklasse zu dem Button hinzu
+        //adds the button to the controler class
         JButton btn = new JButton("Increment");
         btn.addActionListener(new Control(model));
         getContentPane().add(btn);
         
-        //Zeigt das Fenster an
+        //shows the window
         setLocation(100,100);
         pack();
         setVisible(true);		
@@ -525,7 +536,7 @@ class ButtonView extends JFrame{
 }
 
 class Control implements ActionListener{
-    //Referenz auf das Model
+    //Model reference
     private Model model;
     
     //Konstruktor
@@ -533,50 +544,50 @@ class Control implements ActionListener{
         this.model = model;
     }
     
-    //Wird ausgeführt, wenn man den Button anklickt
+    //gets executed by button click
     public void actionPerformed(ActionEvent evt){
         model.incValue();
     }
 }
 
 class Model{
-    //Alle angemeldeten Views
+    //Array of all registered views
     private ArrayList views;
     
-    //Daten
+    //Data
     private int curValue;
     
-    //Konstruktor
+    //Constructor
     public Model(){
         views = new ArrayList();
         curValue = 0;
     }
     
-    //Fügt eine neue View hinzu
+    //Adds a new view
     public void addView(View view){
         views.add(view);
         view.refresh();
     }
     
-    //Entfernt eine View
+    //deletes a specific view
     public void removeView(View view){
         views.remove(view);
     }
     
-    //Benachrichtigt alle Views
+    //notifies all views
     public void notifyViews(){
         for(View v : views){
             v.refresh();
         }
     }
     
-    //Inkrementiert die Daten
+    //increments the data
     public void incValue(){
         curValue++;
         notifyViews();
     }
     
-    //Gibt die Daten zurück
+    //returns the data
     public int getValue(){
         return curValue;
     }
@@ -585,20 +596,21 @@ class Model{
 public class MVCPattern {
     public static void main(String[] args){
         /*
-            * Erstellt das Model, in welchem die Daten,
-            * sowie die Views verwaltet werden.
+        
+            * creates the model, in which the data 
+            * and the views are managed
             */
         Model model = new Model();
         
-        //Die Views, welche die Daten anzeigen
+        //views to show the data
         RealView view1 = new RealView(1, model);
         RealView view2 = new RealView(2, model);
         
-        //Die Views tragen sich bei dem Model ein
+        //the views get registered to the model
         model.addView(view1);
         model.addView(view2);
         
-        //Die View zur Bedienung des Programms
+        //view to control the program
         new ButtonView(model);
     }
 }
@@ -612,21 +624,27 @@ public class MVCPattern {
                         <div>
                             <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;padding-left: 10px;">
                                 <p class="lead text-center">
-                                    <strong>Vorteile:</strong>
+                                    <strong>Pros:</strong>
                                     <p>
-                                        Der Vorteil der Aufgabenverteilung einer Model View Controller Architektur ist zum einen die Aufteilung in logische, unabhängige Klassen. Damit ermöglicht eine Model View Controller Architektur agile Entwicklung, denn es besteht jederzeit die Option, jede der drei Komponenten auszutauschen.
+                                        One advantage of the MVC Model is the split into logically independent classes. This allows for an agile development because there is an option the change one part without changing the other two.
                                         <br>
                                         <br>
-                                        Vorteile findet man zum einen in der Möglichkeit, dass ein und dasselbe Datenmodell in mehreren Ansichten repräsentiert werden kann. Des weiteren sind alle Ansichten die sich auf ein Modell Beziehen automatisch synchronisiert und es können Bedienelemente beliebig vertauscht werden. Außerdem ist es ohne weiteres möglich auf eine vorhandenes Model eine neue View zu implementieren. Dadurch ist ein solches System nahezu beliebig skalierbar.
-                                    </p>
+                                        Another advantage is the possibility to show the same data in multiple views because of the shared data source. Its also possible to effortlessly implement a new view. This makes the MVC Model nearly infinitely scalable.
+                                        </p>
                                 </p>
                                 <br>
                             </div>
                             <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;padding-left: 10px;">
                                 <p class="lead text-center">
-                                    <strong>Nachteile:</strong>
+                                    <strong>Cons:</strong>
                                     <p>
-                                        Ein Nachteil besteht darin, dass der Zugriff mehrerer Views auf ein Model schnell zu einer hohen Komplexität führen kann und sich dadurch fehlerhafte Stellen im Programm schwerer ausfindig machen lassen. Des weitern kann man teilweise von einem ineffizienten Datenzugriff innerhalb einer Ansicht sprechen, da immer noch ein Objekt dazwischen geschaltet ist. Außerdem ist dass MVC-Konzept schwierig in WYSIWYG-Werkzeuge zu integrieren. Auch die starke Koppelung zwischen Modell und Sicht sowie zwischen Modell und Controller kann als Nachteil interpretiert werden.
+                                        One disadvantage is the high complexity when accessing the same model from multiple views. This can lead to problems while trying to find problems in the program.
+                                        <br>
+                                        <br>
+                                        There can sometimes be a problem with the efficiency of accessing the data because there is always an object in between.
+                                        <br>
+                                        <br>
+                                        The strong connection between Model and View as well as the Model and controller can also be seen as a flaw.
                                     </p>
                                 </p>
                                 <br>

@@ -445,11 +445,18 @@ public static void main(String[] args){
                         <p class="lead">
                             <p><b>MVC</b> steht für <b>M</b>odel-<b>V</b>iew-<b>C</b>ontrol.</p>
 
-                            <p>Mit dem MVC Pattern, wird ein Programm in drei unterschiedliche Teile aufgeteilt. Dabei beinhaltet der Model-Teil die Daten bzw. Den Zugriff auf diese. Dies ist auch der Teil, on dem sich der klassische, objektorientierte Teil des Programms vorhanden sein wird. Das bedeutet auch den Datenbankzugriff oder jede andere Art von Datenverwaltung. Des Weiteren gibt es noch den View-Abschnitt. Hier befinden sich alle Ansichten. Diese zeigen normalerweise die Daten des Models an, sind jedoch komplett unabhängig von den Daten implementiert. Als letzten und dritten Teil des Patterns folgt der Control-Teil. Dieser beinhaltet alle Kontrollmöglichkeiten, mit welchen ein Benutzer das Programm steuern kann. Wichtig: auch dieser Teil ist normalerweise komplett unabhängig von den anderen Teilen.</p>
-
-                            <p>Die drei verschiedenen Teile des MVC wissen ausschließlich durch Referenzen voneinander und nur durch die definierten Zugriffsmethoden wird eine Kommunikation gewährleistet. Es soll also beispielsweise nicht möglich sein von einer View-Klasse direkt auf Objekte der Model-Klasse zuzugreifen.</p>
-
-                            <p>Im folgenden Beispiel wird ein Programm vorgestellt, welches nicht nur ein MVC-Entwurfsmuster implementiert, sondern gleichzeitig auch noch ein Observer-Pattern verwendet. Diese Vermischung der beiden Entwurfsmuster kommt sehr häufig vor, da sie gut zusammenpassen. Dabei sind die beiden so verknüpft, dass es sich bei den View-Klassen um die Observerklassen des Observer-Patterns handelt und die Model-Klasse die Subject-Klasse des Patterns repräsentiert.</p>
+                            <p>
+                                Mit dem MVC Pattern, wird ein Programm in drei unterschiedliche Teile aufgeteilt. Dabei beinhaltet der Model-Teil die Daten bzw. Den Zugriff auf diese. Dies ist auch der Teil, in dem der klassische, objektorientierte Teil des Programms vorhanden ist. Das bedeutet auch den Datenbankzugriff oder jede andere Art von Datenverwaltung.                             </p>
+                            <p>
+                                Des Weiteren gibt es noch den View-Abschnitt. Hier befinden sich alle Ansichten. Diese zeigen normalerweise die Daten des Models an, sind jedoch komplett unabhängig von den Daten implementiert.                             </p>
+                            <p>
+                                Als letzten und dritten Teil des Patterns folgt der Control-Teil. Dieser beinhaltet alle Kontrollmöglichkeiten, mit welchen ein Benutzer das Programm steuern kann. Wichtig: auch dieser Teil ist normalerweise komplett unabhängig von den anderen Teilen.                            </p>
+                        </p>
+                        <p>
+                            Die drei verschiedenen Teile des MVC wissen ausschließlich durch Referenzen voneinander und nur durch die definierten Zugriffsmethoden wird eine Kommunikation gewährleistet. Es soll also beispielsweise nicht möglich sein von einer View-Klasse direkt auf Objekte der Model-Klasse zuzugreifen.
+                        </p>
+                        <p>
+                            Im folgenden Beispiel wird ein Programm vorgestellt, welches nicht nur ein MVC-Entwurfsmuster implementiert, sondern gleichzeitig auch noch ein Observer-Pattern verwendet. Diese Vermischung der beiden Entwurfsmuster kommt sehr häufig vor, da sie gut zusammenpassen. Dabei sind die beiden so verknüpft, dass es sich bei den View-Klassen um die Observerklassen des Observer-Patterns .
                         </p>
                         <pre>
                             <code class="language-java">
