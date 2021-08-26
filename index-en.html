@@ -193,16 +193,13 @@ final class EagerSingleton{
                         </div>
                         <p class="lead">
                             <p>
-                                Das Haupteinsatzgebiet von einem Observer Pattern ist die Gestaltung von Grafischen Oberflächen.
-                                Das Observer Pattern sorgt zum Beispiel dafür, dass die Elemente einer Grafische Oberfläche, die eine identische Datenquelle verwenden, sich aktualisieren, sobald sich die Quelldaten ändern.  
-                                Programme, die das Observer Pattern verwenden, werden in zwei Teile aufgeteilt.
+                                The Oberserver pattern is mainly used in the design of graphical user interfaces. As soon as data sources change, it ensures, for example, that a dependent element of a graphical user interface is automatically updated. Programs that use the Observer Pattern are divided into two parts.
                                 </p>
                                 <p>
-                                Einmal die Subject-Klasse, welche die Daten enthält und zum anderen die Observer-Klassen und die Observer-Schnittstelle, welche die Daten einlesen und anzeigen, ausgeben oder weiterverarbeiten. 
-                                Die obere Abbildung zeigt die Struktur dieses Patterns. 
+                                One is the Subject class, which contains the data, and the other is the Observer classes and the Observer interface, which read and display, output, or process the data. The upper figure shows the structure of this pattern. 
                                 </p>
                                 <p>
-                                Im folgenden Quellcode sieht man ein Beispiel für ein Programm, welches das Observer Pattern verwendet:
+                                In the following source code you can see an example of a program that uses the Observer pattern:
                                 </p>
 
 
@@ -211,48 +208,48 @@ final class EagerSingleton{
 import java.util.ArrayList;
 
 /*
-    * Hier wird das sogenannte Observerpattern vorgestellt.
-    * Dieses dient zur Verwaltung von verschiedenen Observern,
-    * welche auf die selben Daten zugreifen.
+    * Here the so-called Observerpattern is introduced.
+    * This serves for the administration of different Observern,
+    * which access the same data.
     */
 
 /*
-    * Dieses Interface stellt den anderen Observern
-    * die refresh Methode zur Verfügung. Jeder Observer
-    * muss diese Methode implementieren. In der Implementierung
-    * der refresh Methode kann jeder Observer mit Daten des
-    * Subjects arbeiten. Immer wenn diese sich ändern sollte
-    * refresh aufgerufen werden.
+    * This interface makes available to the other observers
+    * the refresh method to the other observers. Each observer
+    * must implement this method. In the implementation
+    * the refresh method, each observer can work with data of the
+    * subject. Whenever this data changes
+    * refresh should be called.
     */
 interface Observer{
 /*
-    * Muss von allen Observern 
-    * implementiert werden
+    * Must be implemented by all observers 
+    * must be implemented
     */
 public void refresh();
 }
 
 
 /*
-    * Dies ist ein Observer.
-    * Dieser implementiert die Schnittstelle Observer und
-    * garantiert dadurch, dass die Refreshmethode implementiert ist.
-    * Er wartet auf refreshs von dem Subject um zu reagieren.
+    * This is an Observer.
+    * This implements the Observer interface and
+    * guarantees that the refresh method is implemented.
+    * It waits for refreshs from the subject to react.
     */
 class RealObserver1 implements Observer{
-//Bezeichnung des Observers
+//Observer name
 private int id;
 
-//Referenz auf das Subject
+//reference to the subject
 private Subject subject;
 
-//Konstruktor
+//Constructor
 public RealObserver1(int id, Subject subject){
     this.id = id;
     this.subject = subject;
 }
 
-//So reagiert der Observer bei einem Notify
+//This is how the Observer responds to a Notify
 public void refresh(){
     System.out.println(
         "RealObserver 1 with id " + id + 
@@ -262,25 +259,24 @@ public void refresh(){
 }
 
 /*
-    * Dies ist eine zweite Observerklasse.
-    * Dieser implementiert die Schnittstelle Observer und
-    * garantiert dadurch, dass die Refreshmethode implementiert ist.
-    * Er wartet auf refreshs von dem Subject um zu reagieren.
+    * This is a second observer class.
+    * This implements the Observer interface and
+    * thereby guarantees that the refresh method is implemented.
+    * It waits for refreshs from the subject to react.
     */
 class RealObserver2 implements Observer{
-//Bezeichnung des Observers
+    //Observer name
 private int id;
 
-//Referenz auf das Subject
+//reference to the subject
 private Subject subject;
 
-//Konstruktor
+//Constructor
 public RealObserver2(int id, Subject subject){
     this.id = id;
     this.subject = subject;
 }
 
-//So reagiert der Observer bei einem Notify
 public void refresh(){
     System.out.println(
         "RealObserver 2 with id " + id + 
@@ -290,78 +286,78 @@ public void refresh(){
 }
 
 /*
-    * In der Subjectklasse werden alle Observer in
-    * einem Array, einer ArrayList oder einer ähnlichen
-    * Datenstruktur gespeichert.
-    * Falls sich etwas an den Daten ändert (hier: curValue)
-    * werden alle Observer benachrichtigt.
+    * In the subject class all observers are stored in
+    * an array, an ArrayList or a similar data structure
+    * data structure.
+    * If something changes in the data (here: curValue).
+    * all observers are notified.
     */
 class Subject{
-//Liste mit allen Observern
+// Enumeration with all observers
 private ArrayList observer;
 
-//Die zu verwaltenden Daten
+//The data to be managed
 private int curValue;
 
-//Konstruktor
+//Constructor
 public Subject(){
     observer = new ArrayList();
     curValue = 0;
 }
 
-//Fügt einen Observer ein und benachrichtigt diesen
+//Adds and notifies an observer
 public void addObserver(Observer o){
     observer.add(o);
     o.refresh();
 }
 
-//Entfernt einen Observer
+//remove an observer
 public void removeObserver(Observer o){
     observer.remove(o);
 }
 
-//Benachrichtigt alle Observer
+//notify all obersver
 public void notifyObserver(){
     for(Observer o : observer){
         o.refresh();
     }
 }
 
-//Inkrementiert die Daten
+//Increments the data
 public void incValue(){
     curValue++;
     notifyObserver();
 }
 
-//Gibt die Daten zurück
+//returns the data
 public int getValue(){
     return curValue;
 }
 }
 
 /*
-    * Es werden ein Subject und vier Observer erstellt.
-    * Nachdem die Observer bei dem Subject angemeldet wurden,
-    * wird der curValue einige male inkrementiert.
+    * A subject and four observers are created.
+    * After the Observer with the Subject were announced,
+    * the curValue is incremented a few times.
     */
 public class ObserverPattern {
 public static void main(String[] args){
-    //Erstellen des Subjects
+    //Create the subject
     Subject subject = new Subject();
     
-    //Erstellen der Observer
+    //Create Observers
     RealObserver1 ro1a = new RealObserver1(1,subject);
     RealObserver1 ro1b = new RealObserver1(2,subject);
     RealObserver2 ro2a = new RealObserver2(3,subject);
     RealObserver2 ro2b = new RealObserver2(4,subject);
     
-    //Anmelden der Observer
+    //Register the Observer
     subject.addObserver(ro1a);
     subject.addObserver(ro1b);
     subject.addObserver(ro2a);
     subject.addObserver(ro2b);
     
-    //Mehrfaches inkrementieren der Daten
+    //Multiple incrementing of the data
     subject.incValue();
     subject.incValue();
     subject.incValue();
@@ -370,19 +366,20 @@ public static void main(String[] args){
                             </code>
                         </pre>
                         <p>
-                            Dort gibt es ein Interface Observer, welches von den beiden Observer-Klassen RealObserver1 und RealObserver2 implementiert werden muss. </p>
-                            <p>
-                            Das Interface enthält eine Funktion refresh() mit der alle Observer-Klassen benachrichtigt werden, wenn sich Daten in der Subject-Klasse geändert haben. 
-                            Dies geschieht in dem sich alle Observer-Klassen bei der Subject-Klasse in eine ArrayList (oder eine beliebige andere Struktur) eintragen. </p>
-                            <p>
-                            Wenn sich nun Daten ändern ruft die Subject-Klasse die Methode notifyObserver() auf, in welcher alle Observer-Klassen durchlaufen werden und deren refresh() Methode aufgerufen wird. 
-                            In dieser Methode können dann die Observer-Klassen auf die Datenänderungen reagieren. </p>
-                            <p>
-                            Das Eintragen und Austragen der Observer-Klassen bei der Subject-Klasse geschieht über die Methoden addObserver(Observer) und removeObserver(Observer). 
+                            Here is an interface Observer, which is implemented by the two Observer classes RealObserver1 and RealObserver2.
                         </p>
-                            <p>
-                            Wie man sieht, bietet das Observer Pattern eine praktische Methode, mit welcher man dafür sorgen kann, dass bei Datenänderungen in einem Programm andere Programmteile sofort aktualisiert und an die neuen Daten angepasst werden können.</p>
-                            </p>
+                        <p>
+                            The interface notifies all observer classes with the function refresh(), if data in the subject class have changed. This happens in that all observer classes register themselves with the subject class in an enumeration (array, list, etc.). 
+                        </p>
+                        <p>
+                            As soon as data in the Subject class are changed, this calls the method notifyObserver(), which iterates through all Observer classes and calls their refresh() method. In this method the observer classes can then react to the data changes.  
+                        </p>
+                        <p>
+                            Adding and removing the observer classes from the subject class is done using the addObserver(Observer) and removeObserver(Observer) methods. 
+                        </p>
+                        <p>
+                            Using this convenient method, you can see that when data changes in a program, other parts of the program can be immediately updated and adapted to the new data.
+                        </p>
                         <!-- Pros and cons section-->
                         <br>
                         <hr>
@@ -390,18 +387,18 @@ public static void main(String[] args){
                         <div>
                             <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;">
                                 <p class="lead text-center">
-                                    <strong>Vorteile:</strong>
+                                    <strong>Advantages:</strong>
                                     <p>
-                                        <strong>Zustandskonsistenz:</strong>
-                                        Die Daten im Gesamtsystem bleiben konsistent, da die Observer ihren Zustand automatisch bei Änderung des Subjects anpassen. Weiterhin bleibt der Informationsaustausch bzw. die Kopplung zwischen den Objekten auf die Zeit zwischen An- und Abmelden des Observers am Subject begrenzt.
+                                        <strong>State consistency:</strong>
+                                        Since the observers automatically adjust their state when the subject changes, the data remains consistent in the overall system. Furthermore, the exchange of information or the coupling between the objects remains limited to the time between the logon and logoff of the observer at the subject.
                                         <br>
                                         <br>
-                                        <strong>Flexibilität und Modularität:</strong>
-                                        Das System erlaubt es, dass mehrere verschiedene Observer ein einziges Subject beobachten, aber auch dass ein Observer mehrere Subjects beobachtet. Weiterhin können Klassen sowohl Observer als auch Subject in einem seien.
+                                        <strong>Flexibility and modularity:</strong>
+                                        The system allows several different observers to observe a single subject, but also allows one observer to observe several subjects. Furthermore, classes can be both observer and subject in one.
                                         <br>
                                         <br>
-                                        <strong>Wiederverwendbarkeit:</strong>
-                                        Durch das Observer Pattern lassen sich Subject und Observer unabhängig voneinander variieren. Somit kann das Subject wiederverwendet werden, ohne seine abhängigen Observer verwenden zu müssen und umgekehrt. Ebenso sind bestehende Subjects wiederverwendbar, wenn neue Observer hinzugefügt werden.
+                                        <strong>Reusability:</strong>
+                                        The observer pattern allows subject and observer to be variable independently of each other. The subject can be reused without having to use its dependent observers and vice versa. Existing subjects can be reused when new observers are added.
 
                                     </p>
                                 </p>
@@ -409,14 +406,14 @@ public static void main(String[] args){
                             </div>
                             <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;">
                                 <p class="lead text-center">
-                                    <strong>Nachteile:</strong>
+                                    <strong>Disadvantages:</strong>
                                     <p>
-                                        <strong>Aktualisierungskaskaden und -zyklen:</strong>
-                                        Bei umfangreichen Systemen mit vielen Subjects und Observer kann es schnell zu ganzen Aktualisierungskaskaden kommen, da die Observer nichts von einander wissen und nicht abschätzen können, welche Folgen eine einzige Modifikation an einem Subject hat.
+                                        <strong>Update cascades and cycles:</strong>
+                                        In large systems with many subjects and observers, entire update cascades can quickly occur, since the observers know nothing about each other and cannot estimate the consequences of a single modification to a subject.
                                         <br>
                                         <br>
-                                        <strong>Abmeldung von Observer:</strong>
-                                        Schnell vergisst man ein Observer beim Subject abzumelden, wenn man es nicht mehr braucht. Dies kann in Fällen von Mehrfachanmeldung (Mehrfachbenachrichtigung) merkwürdige Effekte zur Folge haben und verhindert die automatische Speicherfreisetzung (Garbage Collection in Java und C#), da das Subject immer noch eine Referenz auf ein nicht mehr gebrauchtes Objekt hält.
+                                        <strong>Unsubscribe from Observer:</strong>
+                                        It is easy to forget to unregister an observer from the subject when it is no longer needed. This can result in strange effects in cases of multiple notification and prevents automatic memory freeing (garbage collection in Java and C#), since the subject still holds a reference to an object that is no longer needed.
                                     </p>
                                 </p>
                                 <br>
