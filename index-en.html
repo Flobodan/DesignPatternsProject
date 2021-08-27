@@ -94,7 +94,7 @@
                             <img src="assets/umlSingleton.png"/>
                         </div>
                         <p class="lead">
-                            The Singleton design pattern is used when only one instance of an object may exist. Two types of singleton creation can be differentiated. The first possibility is a so-called lazy singleton. This means that the instance is only created when it is really needed.
+                            The Singleton design pattern is used when only one instance of an object may exist. Two types of singleton creation can be differentiated. The first possibility is a lazy singleton. This means that the instance is only created when it is really needed.
                         </p>
                         <pre>
                             <code class="language-java">
@@ -208,7 +208,7 @@ final class EagerSingleton{
 import java.util.ArrayList;
 
 /*
-    * Here the so-called Observerpattern is introduced.
+    * Here the Observerpattern is introduced.
     * This serves for the administration of different Observern,
     * which access the same data.
     */
@@ -670,15 +670,13 @@ public class MVCPattern {
                     <img src="assets/uml_mvvm.png" />
                 </div>
                 <p class="lead">
-                    <p><b>MVVM</b> steht für <b>M</b>odel-<b>V</b>iew-<b>V</b>iew<b>M</b>odel</p>
+                    <p><b>MVVM</b> stands for <b>M</b>odel-<b>V</b>iew-<b>V</b>iew<b>M</b>odel</p>
 
-Grundidee ist die Aufteilung des Codes in einen allgemeinen, oberflächenunabhängigen Teil (das Model) und auf der anderen Seite den oberflächenspezifischen Code. Dieser kann wiederum in Code zur reinen Anzeige (die View) und Code zur Verarbeitung von Benutzereingaben und Steuerung der Oberfläche (der Controller) geteilt werden.
-​
-  <br>  
-Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abzubilden. Dieses ViewModel enthält also beispielsweise Felder für die aktuellen Werte von Textfeldern, Tabellen und anderen Komponenten. Außerdem werden Informationen wie "Button X ist inaktiv" ebenfalls als Boolean-Feld im ViewModel hinterlegt.
-<br> Die View präsentiert lediglich den UI-Zustand des ViewModels. Wird der UI-Zustand vom Nutzer verändert, z. B. indem in einem Textfeld getippt wird, reicht die View diese Änderungen umgehend an das ViewModel weiter. Andersherum müssen aber auch Änderungen, die vom ViewModel ausgehen, umgehend von der View angezeigt werden. 
-<br>View und ViewModel müssen also stets synchron gehalten werden. Wie diese Synchronisierung konkret umgesetzt wird, kommt dabei auf die Programmiersprache bzw. das Framework an.
-
+                    <p>
+                        Basically, the idea of MVVM is to divide the code into a general part, the surface-specific code and a surface-independent part (the model). The surface-specific code can be divided into code for pure display (the view) and code for processing user input and controlling the surface (the controller). The idea behind this is to map the entire UI state in the "ViewModel". This ViewModel contains for example fields for the current values of text fields, tables and other components. States such as "Button X is inactive" are also stored as Boolean fields in the ViewModel. 
+                        The view only presents the UI state of the ViewModel. As soon as the UI state is changed by the user, the view immediately passes these changes to the ViewModel. For example, by typing in a text field. On the other hand, changes that originate from the ViewModel must also be immediately displayed by the view. 
+                        View and ViewModel must therefore always be kept synchronized. How this synchronization is implemented depends on the programming language or framework. 
+                    </p>
                 </p>
                 <pre>
                     <code class="language-java">
