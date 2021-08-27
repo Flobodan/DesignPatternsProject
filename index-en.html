@@ -94,7 +94,7 @@
                             <img src="assets/umlSingleton.png"/>
                         </div>
                         <p class="lead">
-                            The Singleton design pattern is used when only one instance of an object may exist. Two types of singleton creation can be differentiated. The first possibility is a so-called lazy singleton. This means that the instance is only created when it is really needed.
+                            The Singleton design pattern is used when only one instance of an object may exist. Two types of singleton creation can be differentiated. The first possibility is a lazy singleton. This means that the instance is only created when it is really needed.
                         </p>
                         <pre>
                             <code class="language-java">
@@ -208,7 +208,7 @@ final class EagerSingleton{
 import java.util.ArrayList;
 
 /*
-    * Here the so-called Observerpattern is introduced.
+    * Here the Observerpattern is introduced.
     * This serves for the administration of different Observern,
     * which access the same data.
     */
@@ -670,21 +670,14 @@ public class MVCPattern {
                     <img src="assets/uml_mvvm.png" />
                 </div>
                 <p class="lead">
-                    <p><b>MVVM</b> steht für <b>M</b>odel-<b>V</b>iew-<b>V</b>iew<b>M</b>odel</p>
+                    <p><b>MVVM</b> stands for <b>M</b>odel-<b>V</b>iew-<b>V</b>iew<b>M</b>odel</p>
 
-Grundidee ist die Aufteilung des Codes in einen allgemeinen, oberflächenunabhängigen Teil (das Model) und auf der anderen Seite den oberflächenspezifischen Code. Dieser kann wiederum in Code zur reinen Anzeige (die View) und Code zur Verarbeitung von Benutzereingaben und Steuerung der Oberfläche (der Controller) geteilt werden.
-​
-  <br>  
-Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abzubilden. Dieses ViewModel enthält also beispielsweise Felder für die aktuellen Werte von Textfeldern, Tabellen und anderen Komponenten. Außerdem werden Informationen wie "Button X ist inaktiv" ebenfalls als Boolean-Feld im ViewModel hinterlegt.
-<br> Die View präsentiert lediglich den UI-Zustand des ViewModels. Wird der UI-Zustand vom Nutzer verändert, z. B. indem in einem Textfeld getippt wird, reicht die View diese Änderungen umgehend an das ViewModel weiter. Andersherum müssen aber auch Änderungen, die vom ViewModel ausgehen, umgehend von der View angezeigt werden. 
-<br>View und ViewModel müssen also stets synchron gehalten werden. Wie diese Synchronisierung konkret umgesetzt wird, kommt dabei auf die Programmiersprache bzw. das Framework an.
-
+                    <p>
+                        Basically, the idea of MVVM is to divide the code into a general part, the surface-specific code and a surface-independent part (the model). The surface-specific code can be divided into code for pure display (the view) and code for processing user input and controlling the surface (the controller). The idea behind this is to map the entire UI state in the "ViewModel". This ViewModel contains for example fields for the current values of text fields, tables and other components. States such as "Button X is inactive" are also stored as Boolean fields in the ViewModel. 
+                        The view only presents the UI state of the ViewModel. As soon as the UI state is changed by the user, the view immediately passes these changes to the ViewModel. For example, by typing in a text field. On the other hand, changes that originate from the ViewModel must also be immediately displayed by the view. 
+                        View and ViewModel must therefore always be kept synchronized. How this synchronization is implemented depends on the programming language or framework. 
+                    </p>
                 </p>
-                <pre>
-                    <code class="language-java">
-
-                    </code>
-                </pre>
 
                 <!-- Pros and cons section-->
                 <br>
@@ -700,47 +693,52 @@ Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abz
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Controller-Klasse dient als Einstiegspunkt für die Anwendung.</td>
-                        <td>Die View-Klasse dient als EInstiegspunkt für die Anwendung.</td>
+                        <td>Controller class serves as an entry point for the application</td>
+                        <td>View class serves as an entry point for the application</td>
                       </tr>
                       <tr>
-                        <td>“One to Many”-Beziehungen zwischen Controler und View. </td>
-                        <td>“One to Many”-Beziehungen zwischen View und View-Model. </td>
+                        <td>“One to Many”-relation between Controler and View. </td>
+                        <td>“One to Many”-relation between View and View-Model. </td>
                       </tr>
                       <tr>
-                        <td>View referenziert nicht den Controller.</td>
-                        <td>View referenziert die View-Model.</td>
+                        <td>View does not reference the Controller.</td>
+                        <td>View recerences the View-Model.</td>
                       </tr>
                       <tr>
-                        <td>MVC ist ein altes Konzept.</td>
-                        <td>MVVM ist ein relativ neues Konzept.</td>
+                        <td>MVC is an outdated concept</td>
+                        <td>MVVM is a relatively new concept</td>
                       </tr>
                       <tr>
-                        <td>Niedrige Lesbarkeit, Wartbarkeit und schweirig für Unit-Tests. </td>
-                        <td>Schwierig zu debuggen, wenn viele Data-Bindings verwendet werden.</td>
+                        <td>Bad readability, maintainability and unit tests take more effort</td>
+                        <td>Hard to debug if a lot of Data-Bindings are used</td>
                       </tr>
                       <tr>
-                        <td>MVC Model Komponenten können seperat vom Benutzer getestet werden. </td>
-                        <td>Der Code ist Event-driven und leicht für Unit-Tests zugänglich. </td>
+                        <td>Every component can be tested seperately</td>
+                        <td>Event-driven code makes unit tests more accessible</td>
                       </tr>
                     </tbody>
                   </table>
                 <div>
                     <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;padding-left: 10px;">
                         <p class="lead text-center">
-                            <strong>Vorteile:</strong>
+                            <strong>Pros:</strong>
                             <p>
-                                Durch diese Trennung können die Anwendungsschichten von verschiedenen Arbeitsgruppen entwickelt werden. Designer können einen Fokus auf das Benutzererlebnis und die UI legen (VIEW) und Entwickler unabhängig davon die UI- und Geschäftslogik schreibe (MODEL und VIEWMODEL). In der Regel sind keine aufwendigen UI-Tests nötig. Stattdessen genügen codebasierte Modul-Tests des ViewModel. Auch ist eine leichtere Austauschbarkeit der View z.B. nach WPF oder Windows Phone möglich. Unterstützung in WPF, Silverlight, Windows Phone und Windows Store Apps.
-                            </p>
+                                This separation allows for parallel working on different modules. Designers can focus on user experience and the user interface (VIEW) while the developers can work on the UI and process logic (MODEL and VIEWMODEL) behind the application. UI-tests are usually not needed. Instead, code-based module tests are sufficient. 
+                                <br><br>
+                                Easy porting of the view to WPF, Silverlight, Windows Phone and Windows Store Apps.
+                                </p>
                         </p>
                         <br>
                     </div>
                     <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;padding-left: 10px;">
                         <p class="lead text-center">
-                            <strong>Nachteile:</strong>
+                            <strong>Cons:</strong>
                             <p>
-                                MVVM stellt einen Mehraufwand dar und ist für Anwendungen mit einfacher UI ein Overkill. Für größere Anwendungen kann das Design eines ausreichend allgemeinen ViewModel’s im Voraus schwierig sein. Außerdem führe eine schlecht verwaltete Datenbindung zu einem erheblichen Speicherbedarf der Anwendung.
-                            </p>
+                                MVVM takes extra effort and is therefore overkill for applications with a simple UI.  
+                                <br><br>
+                                The planning of a sufficient ViewModel design can prove to be difficult for larger applications.                                
+                                <br><br>
+                                Badly managed data bindings can result in a greatly increased memory cost.                            </p>
                         </p>
                         <br>
                     </div>
@@ -802,7 +800,7 @@ Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abz
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Dennis, Florian, Michele</p></div>
-            <div>Quellen: <a href="https://public.hochschule-trier.de" style="color: rgba(0, 0, 0, .0)">KLICK</a></div>
+            <div>Sources: <a href="https://public.hochschule-trier.de" style="color: rgba(0, 0, 0, .0)">KLICK</a></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>

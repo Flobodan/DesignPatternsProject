@@ -671,11 +671,7 @@ Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abz
 <br>View und ViewModel müssen also stets synchron gehalten werden. Wie diese Synchronisierung konkret umgesetzt wird, kommt dabei auf die Programmiersprache bzw. das Framework an.
 
                 </p>
-                <pre>
-                    <code class="language-java">
 
-                    </code>
-                </pre>
 
                 <!-- Pros and cons section-->
                 <br>
@@ -695,7 +691,7 @@ Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abz
                         <td>Die View-Klasse dient als EInstiegspunkt für die Anwendung.</td>
                       </tr>
                       <tr>
-                        <td>“One to Many”-Beziehungen zwischen Controler und View. </td>
+                        <td>“One to Many”-Beziehungen zwischen Controller und View. </td>
                         <td>“One to Many”-Beziehungen zwischen View und View-Model. </td>
                       </tr>
                       <tr>
@@ -707,7 +703,7 @@ Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abz
                         <td>MVVM ist ein relativ neues Konzept.</td>
                       </tr>
                       <tr>
-                        <td>Niedrige Lesbarkeit, Wartbarkeit und schweirig für Unit-Tests. </td>
+                        <td>Niedrige Lesbarkeit, maintainability und schwierig für Unit-Tests. </td>
                         <td>Schwierig zu debuggen, wenn viele Data-Bindings verwendet werden.</td>
                       </tr>
                       <tr>
@@ -721,7 +717,8 @@ Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abz
                         <p class="lead text-center">
                             <strong>Vorteile:</strong>
                             <p>
-                                Durch diese Trennung können die Anwendungsschichten von verschiedenen Arbeitsgruppen entwickelt werden. Designer können einen Fokus auf das Benutzererlebnis und die UI legen (VIEW) und Entwickler unabhängig davon die UI- und Geschäftslogik schreibe (MODEL und VIEWMODEL). In der Regel sind keine aufwendigen UI-Tests nötig. Stattdessen genügen codebasierte Modul-Tests des ViewModel. Auch ist eine leichtere Austauschbarkeit der View z.B. nach WPF oder Windows Phone möglich. Unterstützung in WPF, Silverlight, Windows Phone und Windows Store Apps.
+                                Durch diese Trennung können die Anwendungsschichten von verschiedenen Arbeitsgruppen entwickelt werden. Designer können einen Fokus auf das Benutzererlebnis und die UI legen (VIEW) und Entwickler unabhängig davon die UI- und Geschäftslogik schreibe (MODEL und VIEWMODEL). In der Regel sind keine aufwendigen UI-Tests nötig. Stattdessen genügen codebasierte Modul-Tests des ViewModel. 
+                                <br><br> Auch ist eine leichtere Austauschbarkeit der View z.B. nach WPF oder Windows Phone möglich. Unterstützung in WPF, Silverlight, Windows Phone und Windows Store Apps.
                             </p>
                         </p>
                         <br>
@@ -730,8 +727,11 @@ Die Idee von MVVM ist es, den gesamten UI-Zustand im sogenannten "ViewModel" abz
                         <p class="lead text-center">
                             <strong>Nachteile:</strong>
                             <p>
-                                MVVM stellt einen Mehraufwand dar und ist für Anwendungen mit einfacher UI ein Overkill. Für größere Anwendungen kann das Design eines ausreichend allgemeinen ViewModel’s im Voraus schwierig sein. Außerdem führe eine schlecht verwaltete Datenbindung zu einem erheblichen Speicherbedarf der Anwendung.
-                            </p>
+                                MVVM stellt einen Mehraufwand dar und ist für Anwendungen mit einfacher UI ein Overkill. 
+                                <br><br>
+                                Für größere Anwendungen kann das Design eines ausreichend allgemeinen ViewModel’s im Voraus schwierig sein. 
+                                <br><br>
+                                Außerdem führt eine schlecht verwaltete Datenbindung zu einem erheblichen Speicherbedarf der Anwendung.</p>
                         </p>
                         <br>
                     </div>
