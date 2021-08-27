@@ -678,11 +678,6 @@ public class MVCPattern {
                         View and ViewModel must therefore always be kept synchronized. How this synchronization is implemented depends on the programming language or framework. 
                     </p>
                 </p>
-                <pre>
-                    <code class="language-java">
-
-                    </code>
-                </pre>
 
                 <!-- Pros and cons section-->
                 <br>
@@ -698,47 +693,52 @@ public class MVCPattern {
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Controller-Klasse dient als Einstiegspunkt für die Anwendung.</td>
-                        <td>Die View-Klasse dient als EInstiegspunkt für die Anwendung.</td>
+                        <td>Controller class serves as an entry point for the application</td>
+                        <td>View class serves as an entry point for the application</td>
                       </tr>
                       <tr>
-                        <td>“One to Many”-Beziehungen zwischen Controler und View. </td>
-                        <td>“One to Many”-Beziehungen zwischen View und View-Model. </td>
+                        <td>“One to Many”-relation between Controler and View. </td>
+                        <td>“One to Many”-relation between View and View-Model. </td>
                       </tr>
                       <tr>
-                        <td>View referenziert nicht den Controller.</td>
-                        <td>View referenziert die View-Model.</td>
+                        <td>View does not reference the Controller.</td>
+                        <td>View recerences the View-Model.</td>
                       </tr>
                       <tr>
-                        <td>MVC ist ein altes Konzept.</td>
-                        <td>MVVM ist ein relativ neues Konzept.</td>
+                        <td>MVC is an outdated concept</td>
+                        <td>MVVM is a relatively new concept</td>
                       </tr>
                       <tr>
-                        <td>Niedrige Lesbarkeit, Wartbarkeit und schweirig für Unit-Tests. </td>
-                        <td>Schwierig zu debuggen, wenn viele Data-Bindings verwendet werden.</td>
+                        <td>Bad readability, maintainability and unit tests take more effort</td>
+                        <td>Hard to debug if a lot of Data-Bindings are used</td>
                       </tr>
                       <tr>
-                        <td>MVC Model Komponenten können seperat vom Benutzer getestet werden. </td>
-                        <td>Der Code ist Event-driven und leicht für Unit-Tests zugänglich. </td>
+                        <td>Every component can be tested seperately</td>
+                        <td>Event-driven code makes unit tests more accessible</td>
                       </tr>
                     </tbody>
                   </table>
                 <div>
                     <div class="row card bg-success bg-opacity-25" style="margin: 2% 0 2% 0;padding-left: 10px;">
                         <p class="lead text-center">
-                            <strong>Vorteile:</strong>
+                            <strong>Pros:</strong>
                             <p>
-                                Durch diese Trennung können die Anwendungsschichten von verschiedenen Arbeitsgruppen entwickelt werden. Designer können einen Fokus auf das Benutzererlebnis und die UI legen (VIEW) und Entwickler unabhängig davon die UI- und Geschäftslogik schreibe (MODEL und VIEWMODEL). In der Regel sind keine aufwendigen UI-Tests nötig. Stattdessen genügen codebasierte Modul-Tests des ViewModel. Auch ist eine leichtere Austauschbarkeit der View z.B. nach WPF oder Windows Phone möglich. Unterstützung in WPF, Silverlight, Windows Phone und Windows Store Apps.
-                            </p>
+                                This separation allows for parallel working on different modules. Designers can focus on user experience and the user interface (VIEW) while the developers can work on the UI and process logic (MODEL and VIEWMODEL) behind the application. UI-tests are usually not needed. Instead, code-based module tests are sufficient. 
+                                <br><br>
+                                Easy porting of the view to WPF, Silverlight, Windows Phone and Windows Store Apps.
+                                </p>
                         </p>
                         <br>
                     </div>
                     <div class="row card bg-danger bg-opacity-25" style="margin: 2% 0 2% 0;padding-left: 10px;">
                         <p class="lead text-center">
-                            <strong>Nachteile:</strong>
+                            <strong>Cons:</strong>
                             <p>
-                                MVVM stellt einen Mehraufwand dar und ist für Anwendungen mit einfacher UI ein Overkill. Für größere Anwendungen kann das Design eines ausreichend allgemeinen ViewModel’s im Voraus schwierig sein. Außerdem führe eine schlecht verwaltete Datenbindung zu einem erheblichen Speicherbedarf der Anwendung.
-                            </p>
+                                MVVM takes extra effort and is therefore overkill for applications with a simple UI.  
+                                <br><br>
+                                The planning of a sufficient ViewModel design can prove to be difficult for larger applications.                                
+                                <br><br>
+                                Badly managed data bindings can result in a greatly increased memory cost.                            </p>
                         </p>
                         <br>
                     </div>
@@ -800,7 +800,7 @@ public class MVCPattern {
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Dennis, Florian, Michele</p></div>
-            <div>Quellen: <a href="https://public.hochschule-trier.de" style="color: rgba(0, 0, 0, .0)">KLICK</a></div>
+            <div>Sources: <a href="https://public.hochschule-trier.de" style="color: rgba(0, 0, 0, .0)">KLICK</a></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
